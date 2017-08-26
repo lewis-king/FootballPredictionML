@@ -1,0 +1,1469 @@
+RandomForestRegressionModel (uid=rfr_636ddd14363f) with 20 trees
+  Tree 0 (weight 1.0):
+    If (feature 1 in {3.0,4.0,5.0,6.0,7.0,8.0,10.0,12.0,13.0,15.0,16.0,17.0})
+     If (feature 2 <= 1.3)
+      If (feature 4 <= 14.0)
+       If (feature 3 <= 6.0)
+        Predict: 6.0
+       Else (feature 3 > 6.0)
+        If (feature 1 in {7.0})
+         Predict: 3.0
+        Else (feature 1 not in {7.0})
+         Predict: 4.0
+      Else (feature 4 > 14.0)
+       Predict: 1.0
+     Else (feature 2 > 1.3)
+      If (feature 2 <= 2.9)
+       If (feature 1 in {3.0,6.0,7.0,8.0,10.0,15.0,16.0})
+        If (feature 2 <= 2.25)
+         Predict: 0.8214285714285714
+        Else (feature 2 > 2.25)
+         Predict: 0.0
+       Else (feature 1 not in {3.0,6.0,7.0,8.0,10.0,15.0,16.0})
+        If (feature 4 <= 4.2)
+         Predict: 1.4285714285714286
+        Else (feature 4 > 4.2)
+         Predict: 0.6666666666666666
+      Else (feature 2 > 2.9)
+       If (feature 2 <= 4.6)
+        If (feature 1 in {3.0,4.0,6.0,17.0})
+         Predict: 0.8666666666666667
+        Else (feature 1 not in {3.0,4.0,6.0,17.0})
+         Predict: 2.2857142857142856
+       Else (feature 2 > 4.6)
+        If (feature 4 <= 1.7)
+         Predict: 1.2432432432432432
+        Else (feature 4 > 1.7)
+         Predict: 0.0
+    Else (feature 1 not in {3.0,4.0,5.0,6.0,7.0,8.0,10.0,12.0,13.0,15.0,16.0,17.0})
+     If (feature 0 in {0.0,7.0,8.0,10.0,13.0,17.0,18.0,19.0})
+      If (feature 1 in {0.0,1.0,2.0,9.0,11.0,19.0})
+       If (feature 3 <= 4.5)
+        Predict: 0.0
+       Else (feature 3 > 4.5)
+        If (feature 4 <= 16.0)
+         Predict: 1.2857142857142858
+        Else (feature 4 > 16.0)
+         Predict: 2.0
+      Else (feature 1 not in {0.0,1.0,2.0,9.0,11.0,19.0})
+       If (feature 2 <= 1.6)
+        If (feature 4 <= 5.75)
+         Predict: 0.0
+        Else (feature 4 > 5.75)
+         Predict: 1.6666666666666667
+       Else (feature 2 > 1.6)
+        If (feature 0 in {0.0,7.0,19.0})
+         Predict: 1.75
+        Else (feature 0 not in {0.0,7.0,19.0})
+         Predict: 4.0
+     Else (feature 0 not in {0.0,7.0,8.0,10.0,13.0,17.0,18.0,19.0})
+      If (feature 0 in {1.0,3.0,4.0,5.0,6.0,12.0,14.0,16.0})
+       If (feature 1 in {14.0,18.0,19.0})
+        If (feature 2 <= 1.2)
+         Predict: 3.0
+        Else (feature 2 > 1.2)
+         Predict: 1.55
+       Else (feature 1 not in {14.0,18.0,19.0})
+        If (feature 4 <= 16.0)
+         Predict: 2.8666666666666667
+        Else (feature 4 > 16.0)
+         Predict: 1.0
+      Else (feature 0 not in {1.0,3.0,4.0,5.0,6.0,12.0,14.0,16.0})
+       If (feature 4 <= 7.0)
+        If (feature 3 <= 4.0)
+         Predict: 3.2
+        Else (feature 3 > 4.0)
+         Predict: 0.0
+       Else (feature 4 > 7.0)
+        If (feature 4 <= 16.0)
+         Predict: 5.0
+        Else (feature 4 > 16.0)
+         Predict: 3.0
+  Tree 1 (weight 1.0):
+    If (feature 3 <= 3.25)
+     If (feature 4 <= 2.9)
+      If (feature 0 in {3.0,7.0,11.0,17.0,18.0})
+       If (feature 1 in {6.0})
+        Predict: 0.0
+       Else (feature 1 not in {6.0})
+        Predict: 1.0
+      Else (feature 0 not in {3.0,7.0,11.0,17.0,18.0})
+       If (feature 1 in {19.0})
+        Predict: 2.0
+       Else (feature 1 not in {19.0})
+        Predict: 4.0
+     Else (feature 4 > 2.9)
+      If (feature 2 <= 2.38)
+       Predict: 0.0
+      Else (feature 2 > 2.38)
+       If (feature 4 <= 3.3)
+        If (feature 1 in {2.0,6.0,19.0})
+         Predict: 0.0
+        Else (feature 1 not in {2.0,6.0,19.0})
+         Predict: 1.0
+       Else (feature 4 > 3.3)
+        Predict: 1.0
+    Else (feature 3 > 3.25)
+     If (feature 4 <= 1.75)
+      If (feature 2 <= 4.6)
+       Predict: 2.0
+      Else (feature 2 > 4.6)
+       If (feature 1 in {3.0,8.0})
+        If (feature 0 in {1.0,2.0,6.0,7.0,11.0,16.0,19.0})
+         Predict: 0.0
+        Else (feature 0 not in {1.0,2.0,6.0,7.0,11.0,16.0,19.0})
+         Predict: 2.0
+       Else (feature 1 not in {3.0,8.0})
+        If (feature 4 <= 1.7)
+         Predict: 1.3076923076923077
+        Else (feature 4 > 1.7)
+         Predict: 4.0
+     Else (feature 4 > 1.75)
+      If (feature 0 in {2.0,3.0,4.0,7.0,8.0,9.0,13.0,16.0,17.0,18.0,19.0})
+       If (feature 4 <= 2.55)
+        If (feature 1 in {4.0,9.0,14.0})
+         Predict: 1.25
+        Else (feature 1 not in {4.0,9.0,14.0})
+         Predict: 2.5
+       Else (feature 4 > 2.55)
+        If (feature 3 <= 4.75)
+         Predict: 0.639344262295082
+        Else (feature 3 > 4.75)
+         Predict: 1.4
+      Else (feature 0 not in {2.0,3.0,4.0,7.0,8.0,9.0,13.0,16.0,17.0,18.0,19.0})
+       If (feature 1 in {0.0,1.0,2.0,3.0,6.0,7.0,10.0,12.0,15.0,16.0})
+        If (feature 4 <= 2.9)
+         Predict: 2.2142857142857144
+        Else (feature 4 > 2.9)
+         Predict: 1.2820512820512822
+       Else (feature 1 not in {0.0,1.0,2.0,3.0,6.0,7.0,10.0,12.0,15.0,16.0})
+        If (feature 4 <= 3.6)
+         Predict: 2.0833333333333335
+        Else (feature 4 > 3.6)
+         Predict: 3.2564102564102564
+  Tree 2 (weight 1.0):
+    If (feature 2 <= 1.4)
+     If (feature 4 <= 14.0)
+      If (feature 0 in {3.0,8.0,9.0,10.0,17.0})
+       If (feature 1 in {0.0,13.0,16.0,19.0})
+        If (feature 0 in {3.0,17.0})
+         Predict: 0.0
+        Else (feature 0 not in {3.0,17.0})
+         Predict: 1.0
+       Else (feature 1 not in {0.0,13.0,16.0,19.0})
+        If (feature 3 <= 5.25)
+         Predict: 2.0
+        Else (feature 3 > 5.25)
+         Predict: 3.4
+      Else (feature 0 not in {3.0,8.0,9.0,10.0,17.0})
+       If (feature 0 in {12.0})
+        If (feature 3 <= 5.0)
+         Predict: 3.0
+        Else (feature 3 > 5.0)
+         Predict: 4.0
+       Else (feature 0 not in {12.0})
+        Predict: 6.0
+     Else (feature 4 > 14.0)
+      If (feature 0 in {3.0,8.0,9.0,17.0})
+       If (feature 4 <= 16.0)
+        If (feature 1 in {5.0,7.0,13.0,18.0,19.0})
+         Predict: 0.5
+        Else (feature 1 not in {5.0,7.0,13.0,18.0,19.0})
+         Predict: 2.3333333333333335
+       Else (feature 4 > 16.0)
+        If (feature 0 in {17.0})
+         Predict: 2.0
+        Else (feature 0 not in {17.0})
+         Predict: 3.0
+      Else (feature 0 not in {3.0,8.0,9.0,17.0})
+       If (feature 1 in {1.0,7.0,19.0})
+        If (feature 1 in {7.0})
+         Predict: 1.0
+        Else (feature 1 not in {7.0})
+         Predict: 2.6666666666666665
+       Else (feature 1 not in {1.0,7.0,19.0})
+        Predict: 5.0
+    Else (feature 2 > 1.4)
+     If (feature 2 <= 1.91)
+      If (feature 1 in {0.0,1.0,2.0,3.0,4.0,7.0,8.0,13.0,14.0,16.0,17.0})
+       If (feature 1 in {0.0,1.0,7.0,13.0,16.0})
+        If (feature 0 in {0.0,4.0,10.0,13.0,15.0})
+         Predict: 0.14285714285714285
+        Else (feature 0 not in {0.0,4.0,10.0,13.0,15.0})
+         Predict: 1.0
+       Else (feature 1 not in {0.0,1.0,7.0,13.0,16.0})
+        If (feature 0 in {0.0,3.0,8.0,12.0,17.0})
+         Predict: 0.9090909090909091
+        Else (feature 0 not in {0.0,3.0,8.0,12.0,17.0})
+         Predict: 2.4
+      Else (feature 1 not in {0.0,1.0,2.0,3.0,4.0,7.0,8.0,13.0,14.0,16.0,17.0})
+       If (feature 0 in {0.0,1.0,3.0,6.0,8.0,9.0,13.0,14.0,15.0})
+        If (feature 0 in {9.0,13.0})
+         Predict: 0.0
+        Else (feature 0 not in {9.0,13.0})
+         Predict: 2.7
+       Else (feature 0 not in {0.0,1.0,3.0,6.0,8.0,9.0,13.0,14.0,15.0})
+        If (feature 0 in {5.0})
+         Predict: 4.25
+        Else (feature 0 not in {5.0})
+         Predict: 6.0
+     Else (feature 2 > 1.91)
+      If (feature 1 in {1.0,3.0,6.0,16.0})
+       If (feature 4 <= 2.55)
+        If (feature 0 in {2.0,6.0,10.0,14.0})
+         Predict: 0.0
+        Else (feature 0 not in {2.0,6.0,10.0,14.0})
+         Predict: 2.0
+       Else (feature 4 > 2.55)
+        If (feature 4 <= 4.2)
+         Predict: 0.05555555555555555
+        Else (feature 4 > 4.2)
+         Predict: 0.6666666666666666
+      Else (feature 1 not in {1.0,3.0,6.0,16.0})
+       If (feature 1 in {0.0,2.0,4.0,8.0,9.0,10.0,12.0,14.0,15.0,17.0,19.0})
+        If (feature 4 <= 2.55)
+         Predict: 1.4166666666666667
+        Else (feature 4 > 2.55)
+         Predict: 1.0
+       Else (feature 1 not in {0.0,2.0,4.0,8.0,9.0,10.0,12.0,14.0,15.0,17.0,19.0})
+        If (feature 0 in {14.0,16.0,19.0})
+         Predict: 1.0
+        Else (feature 0 not in {14.0,16.0,19.0})
+         Predict: 2.75
+  Tree 3 (weight 1.0):
+    If (feature 2 <= 1.4)
+     If (feature 4 <= 14.0)
+      If (feature 1 in {6.0,7.0,11.0,16.0,19.0})
+       If (feature 3 <= 6.0)
+        If (feature 1 in {16.0,19.0})
+         Predict: 0.0
+        Else (feature 1 not in {16.0,19.0})
+         Predict: 0.8
+       Else (feature 3 > 6.0)
+        Predict: 3.5
+      Else (feature 1 not in {6.0,7.0,11.0,16.0,19.0})
+       If (feature 0 in {4.0,8.0,9.0,10.0,12.0})
+        If (feature 4 <= 12.0)
+         Predict: 3.0
+        Else (feature 4 > 12.0)
+         Predict: 4.0
+       Else (feature 0 not in {4.0,8.0,9.0,10.0,12.0})
+        If (feature 2 <= 1.3)
+         Predict: 6.0
+        Else (feature 2 > 1.3)
+         Predict: 5.0
+     Else (feature 4 > 14.0)
+      If (feature 4 <= 16.0)
+       If (feature 0 in {3.0,8.0,9.0,17.0})
+        If (feature 0 in {8.0,17.0})
+         Predict: 0.3333333333333333
+        Else (feature 0 not in {8.0,17.0})
+         Predict: 1.0
+       Else (feature 0 not in {3.0,8.0,9.0,17.0})
+        Predict: 3.0
+      Else (feature 4 > 16.0)
+       If (feature 1 in {11.0,18.0})
+        If (feature 3 <= 7.5)
+         Predict: 2.0
+        Else (feature 3 > 7.5)
+         Predict: 1.0
+       Else (feature 1 not in {11.0,18.0})
+        Predict: 3.0
+    Else (feature 2 > 1.4)
+     If (feature 1 in {0.0,1.0,2.0,3.0,4.0,6.0,7.0,10.0,12.0,15.0,16.0})
+      If (feature 0 in {1.0,2.0,3.0,4.0,5.0,8.0,9.0,10.0,12.0,13.0,16.0,17.0,19.0})
+       If (feature 0 in {1.0,2.0,4.0,5.0,8.0,9.0,16.0,17.0})
+        If (feature 4 <= 4.0)
+         Predict: 0.627906976744186
+        Else (feature 4 > 4.0)
+         Predict: 0.1
+       Else (feature 0 not in {1.0,2.0,4.0,5.0,8.0,9.0,16.0,17.0})
+        If (feature 2 <= 2.9)
+         Predict: 0.29411764705882354
+        Else (feature 2 > 2.9)
+         Predict: 2.0
+      Else (feature 0 not in {1.0,2.0,3.0,4.0,5.0,8.0,9.0,10.0,12.0,13.0,16.0,17.0,19.0})
+       If (feature 4 <= 2.75)
+        If (feature 4 <= 1.36)
+         Predict: 2.0
+        Else (feature 4 > 1.36)
+         Predict: 1.1363636363636365
+       Else (feature 4 > 2.75)
+        If (feature 0 in {0.0,7.0,11.0,14.0})
+         Predict: 1.2083333333333333
+        Else (feature 0 not in {0.0,7.0,11.0,14.0})
+         Predict: 2.8
+     Else (feature 1 not in {0.0,1.0,2.0,3.0,4.0,6.0,7.0,10.0,12.0,15.0,16.0})
+      If (feature 0 in {0.0,1.0,2.0,3.0,4.0,7.0,8.0,9.0,11.0,16.0,18.0,19.0})
+       If (feature 0 in {3.0,8.0,9.0,16.0,18.0,19.0})
+        If (feature 4 <= 4.5)
+         Predict: 1.0
+        Else (feature 4 > 4.5)
+         Predict: 0.0
+       Else (feature 0 not in {3.0,8.0,9.0,16.0,18.0,19.0})
+        If (feature 2 <= 4.6)
+         Predict: 1.9642857142857142
+        Else (feature 2 > 4.6)
+         Predict: 1.0769230769230769
+      Else (feature 0 not in {0.0,1.0,2.0,3.0,4.0,7.0,8.0,9.0,11.0,16.0,18.0,19.0})
+       If (feature 1 in {8.0,9.0,11.0,13.0,14.0,17.0,18.0,19.0})
+        If (feature 4 <= 3.3)
+         Predict: 1.875
+        Else (feature 4 > 3.3)
+         Predict: 3.5
+       Else (feature 1 not in {8.0,9.0,11.0,13.0,14.0,17.0,18.0,19.0})
+        Predict: 6.0
+  Tree 4 (weight 1.0):
+    If (feature 4 <= 7.0)
+     If (feature 0 in {2.0,3.0,4.0,9.0,13.0,16.0,17.0,19.0})
+      If (feature 4 <= 3.3)
+       If (feature 3 <= 5.25)
+        If (feature 1 in {0.0,2.0,3.0,9.0,12.0,17.0})
+         Predict: 0.25
+        Else (feature 1 not in {0.0,2.0,3.0,9.0,12.0,17.0})
+         Predict: 1.375
+       Else (feature 3 > 5.25)
+        Predict: 2.0
+      Else (feature 4 > 3.3)
+       If (feature 0 in {2.0,3.0,13.0,16.0,17.0,19.0})
+        If (feature 4 <= 4.5)
+         Predict: 0.09090909090909091
+        Else (feature 4 > 4.5)
+         Predict: 0.0
+       Else (feature 0 not in {2.0,3.0,13.0,16.0,17.0,19.0})
+        If (feature 3 <= 3.5)
+         Predict: 3.0
+        Else (feature 3 > 3.5)
+         Predict: 0.5714285714285714
+     Else (feature 0 not in {2.0,3.0,4.0,9.0,13.0,16.0,17.0,19.0})
+      If (feature 3 <= 3.5)
+       If (feature 0 in {0.0,7.0,10.0,15.0})
+        If (feature 2 <= 2.0)
+         Predict: 1.6
+        Else (feature 2 > 2.0)
+         Predict: 0.7894736842105263
+       Else (feature 0 not in {0.0,7.0,10.0,15.0})
+        If (feature 0 in {1.0,18.0})
+         Predict: 1.875
+        Else (feature 0 not in {1.0,18.0})
+         Predict: 2.65
+      Else (feature 3 > 3.5)
+       If (feature 1 in {0.0,1.0,2.0,3.0,7.0,8.0,10.0,12.0,15.0,16.0,17.0,18.0})
+        If (feature 0 in {1.0,5.0,6.0,8.0,10.0,11.0,12.0,15.0})
+         Predict: 0.5454545454545454
+        Else (feature 0 not in {1.0,5.0,6.0,8.0,10.0,11.0,12.0,15.0})
+         Predict: 1.64
+       Else (feature 1 not in {0.0,1.0,2.0,3.0,7.0,8.0,10.0,12.0,15.0,16.0,17.0,18.0})
+        If (feature 1 in {4.0,5.0,9.0,13.0,14.0})
+         Predict: 2.0714285714285716
+        Else (feature 1 not in {4.0,5.0,9.0,13.0,14.0})
+         Predict: 4.0
+    Else (feature 4 > 7.0)
+     If (feature 3 <= 8.5)
+      If (feature 4 <= 14.0)
+       If (feature 1 in {0.0,2.0,4.0,6.0,7.0,13.0,16.0,19.0})
+        If (feature 3 <= 6.0)
+         Predict: 1.0714285714285714
+        Else (feature 3 > 6.0)
+         Predict: 3.142857142857143
+       Else (feature 1 not in {0.0,2.0,4.0,6.0,7.0,13.0,16.0,19.0})
+        If (feature 0 in {8.0,10.0,14.0})
+         Predict: 3.0
+        Else (feature 0 not in {8.0,10.0,14.0})
+         Predict: 4.5
+      Else (feature 4 > 14.0)
+       If (feature 0 in {8.0,9.0,17.0})
+        If (feature 1 in {5.0,19.0})
+         Predict: 0.25
+        Else (feature 1 not in {5.0,19.0})
+         Predict: 1.4285714285714286
+       Else (feature 0 not in {8.0,9.0,17.0})
+        If (feature 3 <= 7.0)
+         Predict: 2.5
+        Else (feature 3 > 7.0)
+         Predict: 1.0
+     Else (feature 3 > 8.5)
+      Predict: 3.0
+  Tree 5 (weight 1.0):
+    If (feature 1 in {0.0,2.0,3.0,6.0,7.0,8.0,9.0,10.0,12.0,13.0,14.0,16.0,17.0,19.0})
+     If (feature 3 <= 6.0)
+      If (feature 0 in {3.0,4.0,10.0,16.0,17.0,18.0,19.0})
+       If (feature 1 in {2.0,6.0,7.0,8.0,10.0,13.0,16.0,19.0})
+        If (feature 3 <= 3.7)
+         Predict: 0.0
+        Else (feature 3 > 3.7)
+         Predict: 0.42857142857142855
+       Else (feature 1 not in {2.0,6.0,7.0,8.0,10.0,13.0,16.0,19.0})
+        If (feature 1 in {0.0,9.0,17.0})
+         Predict: 0.9230769230769231
+        Else (feature 1 not in {0.0,9.0,17.0})
+         Predict: 1.6875
+      Else (feature 0 not in {3.0,4.0,10.0,16.0,17.0,18.0,19.0})
+       If (feature 3 <= 4.75)
+        If (feature 3 <= 3.5)
+         Predict: 1.5217391304347827
+        Else (feature 3 > 3.5)
+         Predict: 0.9850746268656716
+       Else (feature 3 > 4.75)
+        If (feature 1 in {0.0,6.0})
+         Predict: 0.5
+        Else (feature 1 not in {0.0,6.0})
+         Predict: 3.0
+     Else (feature 3 > 6.0)
+      If (feature 1 in {9.0,13.0,19.0})
+       If (feature 4 <= 14.0)
+        If (feature 2 <= 1.25)
+         Predict: 4.0
+        Else (feature 2 > 1.25)
+         Predict: 1.5
+       Else (feature 4 > 14.0)
+        If (feature 4 <= 16.0)
+         Predict: 0.0
+        Else (feature 4 > 16.0)
+         Predict: 3.0
+      Else (feature 1 not in {9.0,13.0,19.0})
+       If (feature 1 in {6.0,7.0,16.0})
+        If (feature 4 <= 14.0)
+         Predict: 3.5
+        Else (feature 4 > 14.0)
+         Predict: 2.3333333333333335
+       Else (feature 1 not in {6.0,7.0,16.0})
+        Predict: 5.0
+    Else (feature 1 not in {0.0,2.0,3.0,6.0,7.0,8.0,9.0,10.0,12.0,13.0,14.0,16.0,17.0,19.0})
+     If (feature 2 <= 1.5)
+      If (feature 3 <= 5.5)
+       If (feature 3 <= 5.0)
+        If (feature 2 <= 1.4)
+         Predict: 3.0
+        Else (feature 2 > 1.4)
+         Predict: 3.5
+       Else (feature 3 > 5.0)
+        Predict: 5.0
+      Else (feature 3 > 5.5)
+       If (feature 3 <= 6.0)
+        Predict: 1.0
+       Else (feature 3 > 6.0)
+        If (feature 3 <= 6.5)
+         Predict: 3.0
+        Else (feature 3 > 6.5)
+         Predict: 1.5714285714285714
+     Else (feature 2 > 1.5)
+      If (feature 2 <= 1.83)
+       If (feature 1 in {1.0})
+        Predict: 0.0
+       Else (feature 1 not in {1.0})
+        If (feature 0 in {3.0,8.0,13.0,19.0})
+         Predict: 0.4
+        Else (feature 0 not in {3.0,8.0,13.0,19.0})
+         Predict: 2.0
+      Else (feature 2 > 1.83)
+       If (feature 0 in {1.0,2.0,3.0,4.0,7.0,11.0,13.0,14.0,16.0,18.0,19.0})
+        If (feature 4 <= 2.75)
+         Predict: 1.9444444444444444
+        Else (feature 4 > 2.75)
+         Predict: 1.0
+       Else (feature 0 not in {1.0,2.0,3.0,4.0,7.0,11.0,13.0,14.0,16.0,18.0,19.0})
+        If (feature 1 in {1.0,18.0})
+         Predict: 1.8
+        Else (feature 1 not in {1.0,18.0})
+         Predict: 4.857142857142857
+  Tree 6 (weight 1.0):
+    If (feature 1 in {3.0,6.0,7.0,12.0,15.0,16.0})
+     If (feature 3 <= 5.5)
+      If (feature 0 in {1.0,2.0,3.0,4.0,5.0,13.0,14.0,17.0,19.0})
+       If (feature 1 in {3.0,6.0,7.0,12.0})
+        If (feature 3 <= 3.6)
+         Predict: 0.3333333333333333
+        Else (feature 3 > 3.6)
+         Predict: 0.0
+       Else (feature 1 not in {3.0,6.0,7.0,12.0})
+        If (feature 4 <= 1.7)
+         Predict: 2.0
+        Else (feature 4 > 1.7)
+         Predict: 0.3
+      Else (feature 0 not in {1.0,2.0,3.0,4.0,5.0,13.0,14.0,17.0,19.0})
+       If (feature 3 <= 3.25)
+        Predict: 0.0
+       Else (feature 3 > 3.25)
+        If (feature 2 <= 6.0)
+         Predict: 1.588235294117647
+        Else (feature 2 > 6.0)
+         Predict: 0.8571428571428571
+     Else (feature 3 > 5.5)
+      If (feature 1 in {6.0,7.0})
+       If (feature 0 in {9.0,15.0})
+        Predict: 1.0
+       Else (feature 0 not in {9.0,15.0})
+        Predict: 3.0
+      Else (feature 1 not in {6.0,7.0})
+       Predict: 2.0
+    Else (feature 1 not in {3.0,6.0,7.0,12.0,15.0,16.0})
+     If (feature 2 <= 1.4)
+      If (feature 4 <= 12.0)
+       If (feature 4 <= 8.0)
+        Predict: 3.0
+       Else (feature 4 > 8.0)
+        If (feature 3 <= 6.0)
+         Predict: 4.5
+        Else (feature 3 > 6.0)
+         Predict: 2.3333333333333335
+      Else (feature 4 > 12.0)
+       If (feature 0 in {3.0,8.0,17.0})
+        If (feature 4 <= 16.0)
+         Predict: 1.0
+        Else (feature 4 > 16.0)
+         Predict: 1.8
+       Else (feature 0 not in {3.0,8.0,17.0})
+        If (feature 0 in {9.0,12.0})
+         Predict: 3.0
+        Else (feature 0 not in {9.0,12.0})
+         Predict: 3.5
+     Else (feature 2 > 1.4)
+      If (feature 3 <= 4.0)
+       If (feature 0 in {0.0,2.0,3.0,4.0,5.0,7.0,8.0,9.0,13.0,16.0,17.0,18.0,19.0})
+        If (feature 0 in {3.0,4.0,8.0,18.0,19.0})
+         Predict: 0.6538461538461539
+        Else (feature 0 not in {3.0,4.0,8.0,18.0,19.0})
+         Predict: 1.5
+       Else (feature 0 not in {0.0,2.0,3.0,4.0,5.0,7.0,8.0,9.0,13.0,16.0,17.0,18.0,19.0})
+        If (feature 2 <= 2.0)
+         Predict: 1.4285714285714286
+        Else (feature 2 > 2.0)
+         Predict: 2.864864864864865
+      Else (feature 3 > 4.0)
+       If (feature 4 <= 8.0)
+        If (feature 0 in {0.0,7.0,8.0,10.0,15.0,16.0,17.0,19.0})
+         Predict: 0.56
+        Else (feature 0 not in {0.0,7.0,8.0,10.0,15.0,16.0,17.0,19.0})
+         Predict: 2.3333333333333335
+       Else (feature 4 > 8.0)
+        Predict: 4.0
+  Tree 7 (weight 1.0):
+    If (feature 1 in {0.0,1.0,2.0,3.0,4.0,6.0,8.0,9.0,10.0,12.0,15.0,16.0,17.0,19.0})
+     If (feature 2 <= 1.25)
+      If (feature 4 <= 14.0)
+       Predict: 4.0
+      Else (feature 4 > 14.0)
+       If (feature 4 <= 16.0)
+        Predict: 2.0
+       Else (feature 4 > 16.0)
+        Predict: 3.0
+     Else (feature 2 > 1.25)
+      If (feature 0 in {1.0,2.0,3.0,9.0,10.0,17.0,18.0,19.0})
+       If (feature 0 in {1.0,10.0,17.0,18.0,19.0})
+        If (feature 1 in {2.0,3.0,8.0,9.0,10.0,12.0,17.0,19.0})
+         Predict: 0.13157894736842105
+        Else (feature 1 not in {2.0,3.0,8.0,9.0,10.0,12.0,17.0,19.0})
+         Predict: 0.6666666666666666
+       Else (feature 0 not in {1.0,10.0,17.0,18.0,19.0})
+        If (feature 1 in {12.0,16.0,19.0})
+         Predict: 0.0
+        Else (feature 1 not in {12.0,16.0,19.0})
+         Predict: 1.1363636363636365
+      Else (feature 0 not in {1.0,2.0,3.0,9.0,10.0,17.0,18.0,19.0})
+       If (feature 3 <= 3.25)
+        If (feature 0 in {0.0,4.0,7.0,11.0})
+         Predict: 0.09090909090909091
+        Else (feature 0 not in {0.0,4.0,7.0,11.0})
+         Predict: 2.5
+       Else (feature 3 > 3.25)
+        If (feature 3 <= 3.7)
+         Predict: 1.8717948717948718
+        Else (feature 3 > 3.7)
+         Predict: 1.1929824561403508
+    Else (feature 1 not in {0.0,1.0,2.0,3.0,4.0,6.0,8.0,9.0,10.0,12.0,15.0,16.0,17.0,19.0})
+     If (feature 0 in {0.0,1.0,2.0,3.0,8.0,9.0,11.0,14.0,16.0,17.0,18.0,19.0})
+      If (feature 1 in {13.0,14.0})
+       If (feature 3 <= 3.9)
+        If (feature 4 <= 5.0)
+         Predict: 1.1333333333333333
+        Else (feature 4 > 5.0)
+         Predict: 4.0
+       Else (feature 3 > 3.9)
+        Predict: 0.0
+      Else (feature 1 not in {13.0,14.0})
+       If (feature 2 <= 1.22)
+        If (feature 1 in {18.0})
+         Predict: 1.25
+        Else (feature 1 not in {18.0})
+         Predict: 2.7777777777777777
+       Else (feature 2 > 1.22)
+        If (feature 0 in {2.0,9.0,14.0,17.0})
+         Predict: 0.3333333333333333
+        Else (feature 0 not in {2.0,9.0,14.0,17.0})
+         Predict: 2.0555555555555554
+     Else (feature 0 not in {0.0,1.0,2.0,3.0,8.0,9.0,11.0,14.0,16.0,17.0,18.0,19.0})
+      If (feature 1 in {7.0,18.0})
+       If (feature 0 in {5.0,15.0})
+        Predict: 1.0
+       Else (feature 0 not in {5.0,15.0})
+        Predict: 3.0
+      Else (feature 1 not in {7.0,18.0})
+       If (feature 2 <= 1.2)
+        Predict: 1.0
+       Else (feature 2 > 1.2)
+        If (feature 2 <= 1.3)
+         Predict: 5.25
+        Else (feature 2 > 1.3)
+         Predict: 3.4210526315789473
+  Tree 8 (weight 1.0):
+    If (feature 2 <= 1.4)
+     If (feature 1 in {7.0,13.0})
+      If (feature 3 <= 6.5)
+       If (feature 2 <= 1.3)
+        Predict: 1.0
+       Else (feature 2 > 1.3)
+        If (feature 0 in {3.0})
+         Predict: 0.0
+        Else (feature 0 not in {3.0})
+         Predict: 1.0
+      Else (feature 3 > 6.5)
+       Predict: 0.0
+     Else (feature 1 not in {7.0,13.0})
+      If (feature 0 in {8.0,17.0})
+       Predict: 1.0
+      Else (feature 0 not in {8.0,17.0})
+       If (feature 1 in {11.0,16.0,18.0,19.0})
+        If (feature 4 <= 10.0)
+         Predict: 3.0
+        Else (feature 4 > 10.0)
+         Predict: 2.1666666666666665
+       Else (feature 1 not in {11.0,16.0,18.0,19.0})
+        If (feature 2 <= 1.25)
+         Predict: 3.0
+        Else (feature 2 > 1.25)
+         Predict: 3.8
+    Else (feature 2 > 1.4)
+     If (feature 2 <= 1.6)
+      If (feature 0 in {8.0,9.0,10.0,17.0})
+       If (feature 1 in {1.0,2.0,10.0,13.0,14.0})
+        Predict: 0.0
+       Else (feature 1 not in {1.0,2.0,10.0,13.0,14.0})
+        Predict: 1.0
+      Else (feature 0 not in {8.0,9.0,10.0,17.0})
+       If (feature 3 <= 4.5)
+        If (feature 4 <= 5.75)
+         Predict: 2.0
+        Else (feature 4 > 5.75)
+         Predict: 1.0
+       Else (feature 3 > 4.5)
+        Predict: 2.0
+     Else (feature 2 > 1.6)
+      If (feature 3 <= 3.8)
+       If (feature 4 <= 4.2)
+        If (feature 1 in {0.0,3.0,4.0,5.0,8.0,9.0,10.0,14.0,15.0,16.0,17.0})
+         Predict: 1.205128205128205
+        Else (feature 1 not in {0.0,3.0,4.0,5.0,8.0,9.0,10.0,14.0,15.0,16.0,17.0})
+         Predict: 2.210526315789474
+       Else (feature 4 > 4.2)
+        If (feature 4 <= 5.25)
+         Predict: 0.782608695652174
+        Else (feature 4 > 5.25)
+         Predict: 1.75
+      Else (feature 3 > 3.8)
+       If (feature 1 in {2.0,3.0,4.0,7.0,8.0,9.0,12.0,15.0,17.0})
+        If (feature 0 in {0.0,1.0,2.0,3.0,5.0,7.0,11.0,12.0,13.0,15.0,18.0,19.0})
+         Predict: 1.4285714285714286
+        Else (feature 0 not in {0.0,1.0,2.0,3.0,5.0,7.0,11.0,12.0,13.0,15.0,18.0,19.0})
+         Predict: 3.2
+       Else (feature 1 not in {2.0,3.0,4.0,7.0,8.0,9.0,12.0,15.0,17.0})
+        If (feature 1 in {10.0,14.0})
+         Predict: 3.625
+        Else (feature 1 not in {10.0,14.0})
+         Predict: 6.0
+  Tree 9 (weight 1.0):
+    If (feature 1 in {1.0,2.0,3.0,6.0,7.0,8.0,10.0,14.0,17.0,19.0})
+     If (feature 4 <= 16.0)
+      If (feature 4 <= 5.25)
+       If (feature 1 in {1.0,2.0,3.0,6.0,17.0})
+        If (feature 3 <= 4.0)
+         Predict: 0.6904761904761905
+        Else (feature 3 > 4.0)
+         Predict: 2.0
+       Else (feature 1 not in {1.0,2.0,3.0,6.0,17.0})
+        If (feature 4 <= 4.2)
+         Predict: 1.303030303030303
+        Else (feature 4 > 4.2)
+         Predict: 2.5555555555555554
+      Else (feature 4 > 5.25)
+       If (feature 0 in {2.0,4.0,5.0,8.0,9.0,17.0})
+        If (feature 4 <= 8.0)
+         Predict: 0.0
+        Else (feature 4 > 8.0)
+         Predict: 0.6666666666666666
+       Else (feature 0 not in {2.0,4.0,5.0,8.0,9.0,17.0})
+        If (feature 1 in {2.0,6.0,7.0,14.0,19.0})
+         Predict: 0.7692307692307693
+        Else (feature 1 not in {2.0,6.0,7.0,14.0,19.0})
+         Predict: 5.0
+     Else (feature 4 > 16.0)
+      If (feature 3 <= 8.5)
+       Predict: 1.0
+      Else (feature 3 > 8.5)
+       Predict: 3.0
+    Else (feature 1 not in {1.0,2.0,3.0,6.0,7.0,8.0,10.0,14.0,17.0,19.0})
+     If (feature 1 in {13.0,15.0,16.0})
+      If (feature 0 in {0.0,1.0,2.0,4.0,5.0,8.0,9.0,10.0,11.0,17.0,18.0,19.0})
+       If (feature 2 <= 2.38)
+        If (feature 0 in {0.0,2.0,4.0,8.0,10.0,17.0,19.0})
+         Predict: 0.09090909090909091
+        Else (feature 0 not in {0.0,2.0,4.0,8.0,10.0,17.0,19.0})
+         Predict: 1.5
+       Else (feature 2 > 2.38)
+        If (feature 0 in {0.0,1.0,18.0})
+         Predict: 0.8888888888888888
+        Else (feature 0 not in {0.0,1.0,18.0})
+         Predict: 2.0
+      Else (feature 0 not in {0.0,1.0,2.0,4.0,5.0,8.0,9.0,10.0,11.0,17.0,18.0,19.0})
+       If (feature 2 <= 1.3)
+        If (feature 3 <= 6.0)
+         Predict: 5.0
+        Else (feature 3 > 6.0)
+         Predict: 4.0
+       Else (feature 2 > 1.3)
+        Predict: 3.0
+     Else (feature 1 not in {13.0,15.0,16.0})
+      If (feature 4 <= 12.0)
+       If (feature 4 <= 7.0)
+        If (feature 0 in {0.0,2.0,3.0,7.0,13.0,15.0,16.0,17.0,18.0,19.0})
+         Predict: 1.5833333333333333
+        Else (feature 0 not in {0.0,2.0,3.0,7.0,13.0,15.0,16.0,17.0,18.0,19.0})
+         Predict: 2.6774193548387095
+       Else (feature 4 > 7.0)
+        If (feature 1 in {0.0})
+         Predict: 2.0
+        Else (feature 1 not in {0.0})
+         Predict: 3.1538461538461537
+      Else (feature 4 > 12.0)
+       If (feature 0 in {8.0,9.0,12.0,17.0})
+        If (feature 4 <= 16.0)
+         Predict: 0.6666666666666666
+        Else (feature 4 > 16.0)
+         Predict: 1.3333333333333333
+       Else (feature 0 not in {8.0,9.0,12.0,17.0})
+        Predict: 3.0
+  Tree 10 (weight 1.0):
+    If (feature 0 in {0.0,2.0,3.0,4.0,5.0,13.0,16.0,18.0,19.0})
+     If (feature 3 <= 5.0)
+      If (feature 1 in {1.0,3.0,6.0,7.0,8.0,9.0,11.0,12.0,13.0,14.0,16.0,17.0})
+       If (feature 3 <= 4.0)
+        If (feature 0 in {5.0,13.0,16.0,19.0})
+         Predict: 0.04
+        Else (feature 0 not in {5.0,13.0,16.0,19.0})
+         Predict: 0.9230769230769231
+       Else (feature 3 > 4.0)
+        Predict: 0.0
+      Else (feature 1 not in {1.0,3.0,6.0,7.0,8.0,9.0,11.0,12.0,13.0,14.0,16.0,17.0})
+       If (feature 3 <= 3.4)
+        If (feature 2 <= 3.3)
+         Predict: 0.9047619047619048
+        Else (feature 2 > 3.3)
+         Predict: 0.0
+       Else (feature 3 > 3.4)
+        If (feature 4 <= 5.0)
+         Predict: 2.066666666666667
+        Else (feature 4 > 5.0)
+         Predict: 0.0
+     Else (feature 3 > 5.0)
+      If (feature 1 in {9.0,18.0})
+       Predict: 1.0
+      Else (feature 1 not in {9.0,18.0})
+       Predict: 5.0
+    Else (feature 0 not in {0.0,2.0,3.0,4.0,5.0,13.0,16.0,18.0,19.0})
+     If (feature 0 in {1.0,7.0,8.0,9.0,10.0,11.0,15.0,17.0})
+      If (feature 3 <= 3.25)
+       If (feature 2 <= 2.63)
+        Predict: 0.0
+       Else (feature 2 > 2.63)
+        Predict: 1.0
+      Else (feature 3 > 3.25)
+       If (feature 4 <= 14.0)
+        If (feature 1 in {0.0,3.0,4.0,6.0,8.0,10.0,11.0,13.0,15.0,17.0})
+         Predict: 1.1956521739130435
+        Else (feature 1 not in {0.0,3.0,4.0,6.0,8.0,10.0,11.0,13.0,15.0,17.0})
+         Predict: 2.641025641025641
+       Else (feature 4 > 14.0)
+        If (feature 0 in {8.0,9.0,15.0})
+         Predict: 0.875
+        Else (feature 0 not in {8.0,9.0,15.0})
+         Predict: 1.3333333333333333
+     Else (feature 0 not in {1.0,7.0,8.0,9.0,10.0,11.0,15.0,17.0})
+      If (feature 1 in {0.0,1.0,3.0,5.0,7.0,8.0,11.0,14.0,15.0})
+       If (feature 1 in {3.0,5.0,7.0,11.0})
+        If (feature 2 <= 1.7)
+         Predict: 1.0
+        Else (feature 2 > 1.7)
+         Predict: 0.0
+       Else (feature 1 not in {3.0,5.0,7.0,11.0})
+        If (feature 2 <= 1.73)
+         Predict: 0.3333333333333333
+        Else (feature 2 > 1.73)
+         Predict: 2.3076923076923075
+      Else (feature 1 not in {0.0,1.0,3.0,5.0,7.0,8.0,11.0,14.0,15.0})
+       If (feature 1 in {4.0,13.0,17.0,18.0,19.0})
+        If (feature 4 <= 3.6)
+         Predict: 2.0
+        Else (feature 4 > 3.6)
+         Predict: 3.4285714285714284
+       Else (feature 1 not in {4.0,13.0,17.0,18.0,19.0})
+        Predict: 4.0
+  Tree 11 (weight 1.0):
+    If (feature 4 <= 1.65)
+     If (feature 0 in {2.0,5.0,16.0,18.0})
+      If (feature 1 in {12.0})
+       Predict: 0.0
+      Else (feature 1 not in {12.0})
+       If (feature 0 in {16.0,18.0})
+        If (feature 3 <= 5.0)
+         Predict: 1.0
+        Else (feature 3 > 5.0)
+         Predict: 0.0
+       Else (feature 0 not in {16.0,18.0})
+        Predict: 2.0
+     Else (feature 0 not in {2.0,5.0,16.0,18.0})
+      If (feature 0 in {0.0,7.0,11.0,13.0,19.0})
+       If (feature 2 <= 5.5)
+        Predict: 0.0
+       Else (feature 2 > 5.5)
+        If (feature 0 in {0.0,7.0,11.0,19.0})
+         Predict: 1.2222222222222223
+        Else (feature 0 not in {0.0,7.0,11.0,19.0})
+         Predict: 2.6666666666666665
+      Else (feature 0 not in {0.0,7.0,11.0,13.0,19.0})
+       Predict: 3.0
+    Else (feature 4 > 1.65)
+     If (feature 1 in {1.0,3.0,4.0,5.0,6.0,10.0,15.0,17.0,19.0})
+      If (feature 4 <= 7.0)
+       If (feature 1 in {3.0,6.0})
+        If (feature 4 <= 1.91)
+         Predict: 1.0
+        Else (feature 4 > 1.91)
+         Predict: 0.06666666666666667
+       Else (feature 1 not in {3.0,6.0})
+        If (feature 1 in {1.0,5.0,10.0,15.0,17.0})
+         Predict: 1.02
+        Else (feature 1 not in {1.0,5.0,10.0,15.0,17.0})
+         Predict: 1.5185185185185186
+      Else (feature 4 > 7.0)
+       If (feature 0 in {15.0,17.0})
+        If (feature 3 <= 6.5)
+         Predict: 0.5714285714285714
+        Else (feature 3 > 6.5)
+         Predict: 3.0
+       Else (feature 0 not in {15.0,17.0})
+        If (feature 1 in {19.0})
+         Predict: 0.0
+        Else (feature 1 not in {19.0})
+         Predict: 3.4
+     Else (feature 1 not in {1.0,3.0,4.0,5.0,6.0,10.0,15.0,17.0,19.0})
+      If (feature 0 in {0.0,2.0,3.0,7.0,8.0,9.0,12.0,13.0,16.0,17.0})
+       If (feature 2 <= 4.6)
+        If (feature 4 <= 1.91)
+         Predict: 3.0
+        Else (feature 4 > 1.91)
+         Predict: 1.3333333333333333
+       Else (feature 2 > 4.6)
+        Predict: 0.0
+      Else (feature 0 not in {0.0,2.0,3.0,7.0,8.0,9.0,12.0,13.0,16.0,17.0})
+       If (feature 1 in {0.0,7.0,8.0,11.0,12.0,13.0,14.0,16.0,18.0})
+        If (feature 1 in {7.0,8.0,12.0,16.0})
+         Predict: 2.1818181818181817
+        Else (feature 1 not in {7.0,8.0,12.0,16.0})
+         Predict: 2.9375
+       Else (feature 1 not in {0.0,7.0,8.0,11.0,12.0,13.0,14.0,16.0,18.0})
+        Predict: 4.0
+  Tree 12 (weight 1.0):
+    If (feature 4 <= 8.0)
+     If (feature 0 in {0.0,2.0,3.0,8.0,9.0,17.0,18.0,19.0})
+      If (feature 2 <= 2.38)
+       If (feature 2 <= 1.7)
+        If (feature 1 in {2.0,7.0,10.0})
+         Predict: 0.0
+        Else (feature 1 not in {2.0,7.0,10.0})
+         Predict: 1.0
+       Else (feature 2 > 1.7)
+        If (feature 1 in {1.0,3.0,4.0,5.0,8.0,11.0,15.0,16.0,19.0})
+         Predict: 0.29411764705882354
+        Else (feature 1 not in {1.0,3.0,4.0,5.0,8.0,11.0,15.0,16.0,19.0})
+         Predict: 3.0
+      Else (feature 2 > 2.38)
+       If (feature 1 in {0.0,4.0,9.0,11.0,12.0,13.0,17.0,19.0})
+        If (feature 3 <= 3.1)
+         Predict: 0.0
+        Else (feature 3 > 3.1)
+         Predict: 0.6086956521739131
+       Else (feature 1 not in {0.0,4.0,9.0,11.0,12.0,13.0,17.0,19.0})
+        If (feature 1 in {3.0,10.0,15.0,18.0})
+         Predict: 1.9285714285714286
+        Else (feature 1 not in {3.0,10.0,15.0,18.0})
+         Predict: 2.6666666666666665
+     Else (feature 0 not in {0.0,2.0,3.0,8.0,9.0,17.0,18.0,19.0})
+      If (feature 4 <= 5.5)
+       If (feature 4 <= 3.4)
+        If (feature 1 in {1.0,3.0,6.0,8.0,10.0,14.0,17.0,19.0})
+         Predict: 0.8780487804878049
+        Else (feature 1 not in {1.0,3.0,6.0,8.0,10.0,14.0,17.0,19.0})
+         Predict: 2.0652173913043477
+       Else (feature 4 > 3.4)
+        If (feature 0 in {1.0,12.0,13.0,14.0,16.0})
+         Predict: 1.5384615384615385
+        Else (feature 0 not in {1.0,12.0,13.0,14.0,16.0})
+         Predict: 3.5
+      Else (feature 4 > 5.5)
+       If (feature 0 in {4.0,6.0,10.0,12.0,15.0})
+        If (feature 1 in {0.0,1.0,2.0,7.0,13.0,19.0})
+         Predict: 0.35294117647058826
+        Else (feature 1 not in {0.0,1.0,2.0,7.0,13.0,19.0})
+         Predict: 3.0
+       Else (feature 0 not in {4.0,6.0,10.0,12.0,15.0})
+        Predict: 3.0
+    Else (feature 4 > 8.0)
+     If (feature 1 in {0.0,5.0,6.0,7.0,16.0,18.0,19.0})
+      If (feature 0 in {3.0,8.0,10.0,12.0,17.0})
+       If (feature 3 <= 6.5)
+        If (feature 4 <= 10.0)
+         Predict: 0.6666666666666666
+        Else (feature 4 > 10.0)
+         Predict: 0.0
+       Else (feature 3 > 6.5)
+        If (feature 0 in {8.0})
+         Predict: 1.0
+        Else (feature 0 not in {8.0})
+         Predict: 2.25
+      Else (feature 0 not in {3.0,8.0,10.0,12.0,17.0})
+       If (feature 1 in {6.0,7.0,18.0})
+        If (feature 2 <= 1.3)
+         Predict: 1.4
+        Else (feature 2 > 1.3)
+         Predict: 3.0
+       Else (feature 1 not in {6.0,7.0,18.0})
+        If (feature 4 <= 12.0)
+         Predict: 4.0
+        Else (feature 4 > 12.0)
+         Predict: 2.0
+     Else (feature 1 not in {0.0,5.0,6.0,7.0,16.0,18.0,19.0})
+      If (feature 0 in {8.0,9.0,12.0,17.0})
+       If (feature 0 in {8.0})
+        Predict: 0.0
+       Else (feature 0 not in {8.0})
+        If (feature 3 <= 7.5)
+         Predict: 3.1818181818181817
+        Else (feature 3 > 7.5)
+         Predict: 1.0
+      Else (feature 0 not in {8.0,9.0,12.0,17.0})
+       If (feature 4 <= 12.0)
+        If (feature 4 <= 10.0)
+         Predict: 5.0
+        Else (feature 4 > 10.0)
+         Predict: 6.0
+       Else (feature 4 > 12.0)
+        Predict: 5.0
+  Tree 13 (weight 1.0):
+    If (feature 1 in {3.0,6.0,7.0,8.0,9.0,10.0,12.0,13.0,14.0,16.0,19.0})
+     If (feature 1 in {3.0,6.0,13.0,16.0,19.0})
+      If (feature 3 <= 7.0)
+       If (feature 4 <= 1.36)
+        Predict: 2.0
+       Else (feature 4 > 1.36)
+        If (feature 0 in {0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0})
+         Predict: 0.5735294117647058
+        Else (feature 0 not in {0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0})
+         Predict: 4.0
+      Else (feature 3 > 7.0)
+       Predict: 3.0
+     Else (feature 1 not in {3.0,6.0,13.0,16.0,19.0})
+      If (feature 0 in {0.0,2.0,3.0,4.0,5.0,6.0,7.0,9.0,11.0,13.0,14.0,16.0,17.0,18.0,19.0})
+       If (feature 2 <= 1.22)
+        Predict: 3.0
+       Else (feature 2 > 1.22)
+        If (feature 0 in {0.0,5.0,9.0,17.0,18.0})
+         Predict: 0.38095238095238093
+        Else (feature 0 not in {0.0,5.0,9.0,17.0,18.0})
+         Predict: 1.0408163265306123
+      Else (feature 0 not in {0.0,2.0,3.0,4.0,5.0,6.0,7.0,9.0,11.0,13.0,14.0,16.0,17.0,18.0,19.0})
+       If (feature 1 in {7.0,8.0,10.0,12.0})
+        If (feature 3 <= 5.0)
+         Predict: 2.5
+        Else (feature 3 > 5.0)
+         Predict: 1.0
+       Else (feature 1 not in {7.0,8.0,10.0,12.0})
+        Predict: 4.0
+    Else (feature 1 not in {3.0,6.0,7.0,8.0,9.0,10.0,12.0,13.0,14.0,16.0,19.0})
+     If (feature 0 in {0.0,1.0,2.0,4.0,7.0,8.0,10.0,11.0,12.0,13.0,15.0,16.0,17.0,18.0,19.0})
+      If (feature 0 in {0.0,1.0,4.0,10.0,15.0,18.0,19.0})
+       If (feature 0 in {1.0,19.0})
+        If (feature 1 in {2.0,15.0,17.0})
+         Predict: 0.0
+        Else (feature 1 not in {2.0,15.0,17.0})
+         Predict: 1.0
+       Else (feature 0 not in {1.0,19.0})
+        If (feature 2 <= 2.5)
+         Predict: 0.5333333333333333
+        Else (feature 2 > 2.5)
+         Predict: 1.3571428571428572
+      Else (feature 0 not in {0.0,1.0,4.0,10.0,15.0,18.0,19.0})
+       If (feature 3 <= 4.75)
+        If (feature 1 in {0.0,2.0,11.0,15.0})
+         Predict: 1.1875
+        Else (feature 1 not in {0.0,2.0,11.0,15.0})
+         Predict: 2.15
+       Else (feature 3 > 4.75)
+        If (feature 3 <= 5.25)
+         Predict: 2.8333333333333335
+        Else (feature 3 > 5.25)
+         Predict: 1.6666666666666667
+     Else (feature 0 not in {0.0,1.0,2.0,4.0,7.0,8.0,10.0,11.0,12.0,13.0,15.0,16.0,17.0,18.0,19.0})
+      If (feature 1 in {4.0,15.0,17.0,18.0})
+       If (feature 2 <= 4.2)
+        If (feature 3 <= 3.3)
+         Predict: 1.3333333333333333
+        Else (feature 3 > 3.3)
+         Predict: 1.8181818181818181
+       Else (feature 2 > 4.2)
+        If (feature 3 <= 3.8)
+         Predict: 2.0
+        Else (feature 3 > 3.8)
+         Predict: 3.6666666666666665
+      Else (feature 1 not in {4.0,15.0,17.0,18.0})
+       If (feature 4 <= 4.0)
+        If (feature 3 <= 3.2)
+         Predict: 4.0
+        Else (feature 3 > 3.2)
+         Predict: 2.6666666666666665
+       Else (feature 4 > 4.0)
+        If (feature 4 <= 5.0)
+         Predict: 6.0
+        Else (feature 4 > 5.0)
+         Predict: 4.142857142857143
+  Tree 14 (weight 1.0):
+    If (feature 0 in {0.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,11.0,12.0,13.0,14.0,16.0,17.0,18.0,19.0})
+     If (feature 4 <= 7.0)
+      If (feature 1 in {1.0,3.0,5.0,6.0,7.0,10.0,14.0,16.0,19.0})
+       If (feature 0 in {0.0,2.0,4.0,5.0,8.0,9.0,14.0,16.0,19.0})
+        If (feature 1 in {1.0,3.0,5.0,6.0,7.0,10.0,19.0})
+         Predict: 0.058823529411764705
+        Else (feature 1 not in {1.0,3.0,5.0,6.0,7.0,10.0,19.0})
+         Predict: 0.5
+       Else (feature 0 not in {0.0,2.0,4.0,5.0,8.0,9.0,14.0,16.0,19.0})
+        If (feature 4 <= 5.75)
+         Predict: 1.3157894736842106
+        Else (feature 4 > 5.75)
+         Predict: 0.0
+      Else (feature 1 not in {1.0,3.0,5.0,6.0,7.0,10.0,14.0,16.0,19.0})
+       If (feature 2 <= 6.0)
+        If (feature 0 in {2.0,3.0,7.0,13.0,16.0,17.0,18.0})
+         Predict: 0.7368421052631579
+        Else (feature 0 not in {2.0,3.0,7.0,13.0,16.0,17.0,18.0})
+         Predict: 2.1176470588235294
+       Else (feature 2 > 6.0)
+        If (feature 4 <= 1.5)
+         Predict: 1.3
+        Else (feature 4 > 1.5)
+         Predict: 0.3333333333333333
+     Else (feature 4 > 7.0)
+      If (feature 1 in {0.0,2.0,7.0,11.0,13.0,16.0,18.0,19.0})
+       If (feature 3 <= 4.8)
+        If (feature 1 in {2.0})
+         Predict: 0.0
+        Else (feature 1 not in {2.0})
+         Predict: 2.8333333333333335
+       Else (feature 3 > 4.8)
+        If (feature 1 in {7.0,13.0,18.0,19.0})
+         Predict: 0.6666666666666666
+        Else (feature 1 not in {7.0,13.0,18.0,19.0})
+         Predict: 1.8125
+      Else (feature 1 not in {0.0,2.0,7.0,11.0,13.0,16.0,18.0,19.0})
+       If (feature 3 <= 5.0)
+        Predict: 3.0
+       Else (feature 3 > 5.0)
+        If (feature 0 in {12.0})
+         Predict: 3.0
+        Else (feature 0 not in {12.0})
+         Predict: 5.0
+    Else (feature 0 not in {0.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,11.0,12.0,13.0,14.0,16.0,17.0,18.0,19.0})
+     If (feature 1 in {0.0,1.0,3.0,4.0,6.0,7.0,8.0,10.0,15.0,16.0,17.0,19.0})
+      If (feature 1 in {1.0,3.0,6.0,17.0})
+       If (feature 0 in {10.0})
+        Predict: 0.0
+       Else (feature 0 not in {10.0})
+        Predict: 1.0
+      Else (feature 1 not in {1.0,3.0,6.0,17.0})
+       If (feature 3 <= 5.25)
+        If (feature 3 <= 3.9)
+         Predict: 2.4166666666666665
+        Else (feature 3 > 3.9)
+         Predict: 1.1666666666666667
+       Else (feature 3 > 5.25)
+        If (feature 1 in {19.0})
+         Predict: 3.0
+        Else (feature 1 not in {19.0})
+         Predict: 4.0
+     Else (feature 1 not in {0.0,1.0,3.0,4.0,6.0,7.0,8.0,10.0,15.0,16.0,17.0,19.0})
+      If (feature 4 <= 8.0)
+       If (feature 3 <= 4.0)
+        If (feature 1 in {9.0,14.0})
+         Predict: 4.0
+        Else (feature 1 not in {9.0,14.0})
+         Predict: 6.0
+       Else (feature 3 > 4.0)
+        Predict: 0.0
+      Else (feature 4 > 8.0)
+       Predict: 6.0
+  Tree 15 (weight 1.0):
+    If (feature 0 in {0.0,1.0,2.0,3.0,4.0,5.0,7.0,8.0,9.0,11.0,13.0,14.0,16.0,17.0,18.0,19.0})
+     If (feature 0 in {1.0,2.0,3.0,4.0,13.0,17.0,19.0})
+      If (feature 3 <= 6.0)
+       If (feature 4 <= 5.75)
+        If (feature 1 in {1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,17.0,19.0})
+         Predict: 0.6129032258064516
+        Else (feature 1 not in {1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,12.0,13.0,14.0,15.0,17.0,19.0})
+         Predict: 2.3333333333333335
+       Else (feature 4 > 5.75)
+        If (feature 1 in {2.0,7.0,14.0,16.0,19.0})
+         Predict: 0.1
+        Else (feature 1 not in {2.0,7.0,14.0,16.0,19.0})
+         Predict: 1.0
+      Else (feature 3 > 6.0)
+       If (feature 1 in {5.0})
+        Predict: 0.0
+       Else (feature 1 not in {5.0})
+        If (feature 4 <= 14.0)
+         Predict: 3.0
+        Else (feature 4 > 14.0)
+         Predict: 2.0
+     Else (feature 0 not in {1.0,2.0,3.0,4.0,13.0,17.0,19.0})
+      If (feature 3 <= 3.2)
+       If (feature 4 <= 2.75)
+        If (feature 0 in {11.0})
+         Predict: 0.0
+        Else (feature 0 not in {11.0})
+         Predict: 1.0
+       Else (feature 4 > 2.75)
+        Predict: 0.0
+      Else (feature 3 > 3.2)
+       If (feature 1 in {1.0,4.0,6.0,9.0,13.0,14.0,15.0,17.0,18.0})
+        If (feature 0 in {5.0,8.0,9.0,16.0,18.0})
+         Predict: 0.7894736842105263
+        Else (feature 0 not in {5.0,8.0,9.0,16.0,18.0})
+         Predict: 1.4
+       Else (feature 1 not in {1.0,4.0,6.0,9.0,13.0,14.0,15.0,17.0,18.0})
+        If (feature 4 <= 3.1)
+         Predict: 1.6097560975609757
+        Else (feature 4 > 3.1)
+         Predict: 2.1481481481481484
+    Else (feature 0 not in {0.0,1.0,2.0,3.0,4.0,5.0,7.0,8.0,9.0,11.0,13.0,14.0,16.0,17.0,18.0,19.0})
+     If (feature 1 in {0.0,3.0,6.0,7.0,15.0})
+      If (feature 4 <= 2.1)
+       Predict: 2.0
+      Else (feature 4 > 2.1)
+       If (feature 3 <= 3.5)
+        If (feature 0 in {10.0,12.0})
+         Predict: 0.0
+        Else (feature 0 not in {10.0,12.0})
+         Predict: 1.0
+       Else (feature 3 > 3.5)
+        If (feature 4 <= 5.75)
+         Predict: 1.0
+        Else (feature 4 > 5.75)
+         Predict: 0.5
+     Else (feature 1 not in {0.0,3.0,6.0,7.0,15.0})
+      If (feature 4 <= 8.0)
+       If (feature 4 <= 5.5)
+        If (feature 3 <= 3.9)
+         Predict: 2.4545454545454546
+        Else (feature 3 > 3.9)
+         Predict: 4.666666666666667
+       Else (feature 4 > 5.5)
+        If (feature 2 <= 1.4)
+         Predict: 3.0
+        Else (feature 2 > 1.4)
+         Predict: 1.25
+      Else (feature 4 > 8.0)
+       If (feature 4 <= 14.0)
+        If (feature 4 <= 10.0)
+         Predict: 3.6666666666666665
+        Else (feature 4 > 10.0)
+         Predict: 4.0
+       Else (feature 4 > 14.0)
+        If (feature 3 <= 8.0)
+         Predict: 1.0
+        Else (feature 3 > 8.0)
+         Predict: 3.0
+  Tree 16 (weight 1.0):
+    If (feature 1 in {3.0,6.0,7.0,8.0,9.0,12.0,15.0,16.0,17.0,19.0})
+     If (feature 2 <= 1.2)
+      Predict: 3.0
+     Else (feature 2 > 1.2)
+      If (feature 3 <= 6.5)
+       If (feature 1 in {3.0,6.0})
+        If (feature 3 <= 3.8)
+         Predict: 0.4166666666666667
+        Else (feature 3 > 3.8)
+         Predict: 2.0
+       Else (feature 1 not in {3.0,6.0})
+        If (feature 2 <= 1.25)
+         Predict: 2.142857142857143
+        Else (feature 2 > 1.25)
+         Predict: 1.2621359223300972
+      Else (feature 3 > 6.5)
+       Predict: 0.0
+    Else (feature 1 not in {3.0,6.0,7.0,8.0,9.0,12.0,15.0,16.0,17.0,19.0})
+     If (feature 4 <= 8.0)
+      If (feature 0 in {0.0,2.0,3.0,4.0,5.0,7.0,8.0,11.0,13.0,15.0,16.0,17.0,18.0,19.0})
+       If (feature 1 in {1.0,2.0,11.0,13.0})
+        If (feature 0 in {2.0,13.0,18.0,19.0})
+         Predict: 0.1111111111111111
+        Else (feature 0 not in {2.0,13.0,18.0,19.0})
+         Predict: 1.0
+       Else (feature 1 not in {1.0,2.0,11.0,13.0})
+        If (feature 2 <= 1.6)
+         Predict: 0.6
+        Else (feature 2 > 1.6)
+         Predict: 1.8918918918918919
+      Else (feature 0 not in {0.0,2.0,3.0,4.0,5.0,7.0,8.0,11.0,13.0,15.0,16.0,17.0,18.0,19.0})
+       If (feature 1 in {1.0,4.0,5.0,11.0,13.0,14.0,18.0})
+        If (feature 2 <= 2.25)
+         Predict: 3.0
+        Else (feature 2 > 2.25)
+         Predict: 1.75
+       Else (feature 1 not in {1.0,4.0,5.0,11.0,13.0,14.0,18.0})
+        If (feature 3 <= 3.4)
+         Predict: 4.6
+        Else (feature 3 > 3.4)
+         Predict: 3.0
+     Else (feature 4 > 8.0)
+      If (feature 4 <= 12.0)
+       If (feature 1 in {2.0,5.0,18.0})
+        Predict: 3.0
+       Else (feature 1 not in {2.0,5.0,18.0})
+        If (feature 3 <= 4.6)
+         Predict: 4.0
+        Else (feature 3 > 4.6)
+         Predict: 5.0
+      Else (feature 4 > 12.0)
+       If (feature 0 in {3.0,8.0,9.0,17.0})
+        If (feature 2 <= 1.2)
+         Predict: 2.0
+        Else (feature 2 > 1.2)
+         Predict: 0.75
+       Else (feature 0 not in {3.0,8.0,9.0,17.0})
+        Predict: 5.0
+  Tree 17 (weight 1.0):
+    If (feature 4 <= 3.75)
+     If (feature 0 in {2.0,3.0,4.0,5.0,7.0,9.0,12.0,13.0,15.0,16.0,17.0,18.0,19.0})
+      If (feature 3 <= 3.4)
+       If (feature 1 in {0.0,1.0,2.0,3.0,4.0,6.0,10.0,11.0,12.0,14.0,15.0})
+        If (feature 0 in {3.0,4.0,5.0,16.0,18.0,19.0})
+         Predict: 0.0
+        Else (feature 0 not in {3.0,4.0,5.0,16.0,18.0,19.0})
+         Predict: 0.7368421052631579
+       Else (feature 1 not in {0.0,1.0,2.0,3.0,4.0,6.0,10.0,11.0,12.0,14.0,15.0})
+        If (feature 0 in {13.0,16.0,19.0})
+         Predict: 2.0
+        Else (feature 0 not in {13.0,16.0,19.0})
+         Predict: 3.0
+      Else (feature 3 > 3.4)
+       If (feature 4 <= 3.3)
+        If (feature 2 <= 3.6)
+         Predict: 2.0
+        Else (feature 2 > 3.6)
+         Predict: 1.0975609756097562
+       Else (feature 4 > 3.3)
+        If (feature 1 in {1.0,15.0})
+         Predict: 0.0
+        Else (feature 1 not in {1.0,15.0})
+         Predict: 1.25
+     Else (feature 0 not in {2.0,3.0,4.0,5.0,7.0,9.0,12.0,13.0,15.0,16.0,17.0,18.0,19.0})
+      If (feature 2 <= 5.25)
+       If (feature 3 <= 3.2)
+        Predict: 0.0
+       Else (feature 3 > 3.2)
+        If (feature 4 <= 2.75)
+         Predict: 2.12
+        Else (feature 4 > 2.75)
+         Predict: 2.909090909090909
+      Else (feature 2 > 5.25)
+       If (feature 0 in {0.0,1.0,6.0,11.0})
+        If (feature 0 in {1.0,6.0})
+         Predict: 0.0
+        Else (feature 0 not in {1.0,6.0})
+         Predict: 0.875
+       Else (feature 0 not in {0.0,1.0,6.0,11.0})
+        Predict: 2.0
+    Else (feature 4 > 3.75)
+     If (feature 2 <= 2.0)
+      If (feature 1 in {0.0,1.0,3.0,4.0,6.0,7.0,13.0,16.0,17.0,18.0})
+       If (feature 0 in {2.0,3.0,4.0,5.0,6.0,8.0,9.0,10.0,14.0,16.0})
+        If (feature 1 in {1.0,3.0,6.0,7.0,13.0,16.0})
+         Predict: 0.2903225806451613
+        Else (feature 1 not in {1.0,3.0,6.0,7.0,13.0,16.0})
+         Predict: 1.4
+       Else (feature 0 not in {2.0,3.0,4.0,5.0,6.0,8.0,9.0,10.0,14.0,16.0})
+        If (feature 3 <= 5.75)
+         Predict: 1.3333333333333333
+        Else (feature 3 > 5.75)
+         Predict: 2.7
+      Else (feature 1 not in {0.0,1.0,3.0,4.0,6.0,7.0,13.0,16.0,17.0,18.0})
+       If (feature 0 in {1.0,3.0,6.0,8.0,9.0,12.0,14.0,16.0,17.0})
+        If (feature 1 in {5.0,19.0})
+         Predict: 1.0714285714285714
+        Else (feature 1 not in {5.0,19.0})
+         Predict: 2.5416666666666665
+       Else (feature 0 not in {1.0,3.0,6.0,8.0,9.0,12.0,14.0,16.0,17.0})
+        If (feature 1 in {10.0,19.0})
+         Predict: 3.8333333333333335
+        Else (feature 1 not in {10.0,19.0})
+         Predict: 5.666666666666667
+     Else (feature 2 > 2.0)
+      If (feature 4 <= 4.2)
+       If (feature 3 <= 3.2)
+        Predict: 0.0
+       Else (feature 3 > 3.2)
+        If (feature 3 <= 3.4)
+         Predict: 4.0
+        Else (feature 3 > 3.4)
+         Predict: 3.0
+      Else (feature 4 > 4.2)
+       Predict: 0.0
+  Tree 18 (weight 1.0):
+    If (feature 3 <= 3.8)
+     If (feature 0 in {2.0,3.0,4.0,8.0,9.0,10.0,13.0,14.0,17.0,19.0})
+      If (feature 1 in {1.0,2.0,3.0,5.0,6.0,7.0,9.0,10.0,16.0})
+       If (feature 0 in {2.0,4.0,10.0,13.0,14.0,17.0,19.0})
+        If (feature 1 in {2.0,3.0,6.0,7.0,9.0,10.0,16.0})
+         Predict: 0.0
+        Else (feature 1 not in {2.0,3.0,6.0,7.0,9.0,10.0,16.0})
+         Predict: 0.3333333333333333
+       Else (feature 0 not in {2.0,4.0,10.0,13.0,14.0,17.0,19.0})
+        Predict: 1.0
+      Else (feature 1 not in {1.0,2.0,3.0,5.0,6.0,7.0,9.0,10.0,16.0})
+       If (feature 1 in {4.0,8.0,12.0,14.0,15.0,17.0,19.0})
+        If (feature 2 <= 4.2)
+         Predict: 1.2702702702702702
+        Else (feature 2 > 4.2)
+         Predict: 0.0
+       Else (feature 1 not in {4.0,8.0,12.0,14.0,15.0,17.0,19.0})
+        Predict: 3.0
+     Else (feature 0 not in {2.0,3.0,4.0,8.0,9.0,10.0,13.0,14.0,17.0,19.0})
+      If (feature 1 in {1.0,3.0,4.0,6.0,9.0,10.0,13.0,14.0,15.0,16.0,18.0,19.0})
+       If (feature 3 <= 3.25)
+        If (feature 0 in {0.0,5.0,7.0,11.0})
+         Predict: 0.0
+        Else (feature 0 not in {0.0,5.0,7.0,11.0})
+         Predict: 1.0
+       Else (feature 3 > 3.25)
+        If (feature 2 <= 3.1)
+         Predict: 1.5588235294117647
+        Else (feature 2 > 3.1)
+         Predict: 1.0833333333333333
+      Else (feature 1 not in {1.0,3.0,4.0,6.0,9.0,10.0,13.0,14.0,15.0,16.0,18.0,19.0})
+       If (feature 2 <= 1.91)
+        Predict: 6.0
+       Else (feature 2 > 1.91)
+        If (feature 4 <= 2.25)
+         Predict: 1.8
+        Else (feature 4 > 2.25)
+         Predict: 2.962962962962963
+    Else (feature 3 > 3.8)
+     If (feature 3 <= 4.0)
+      If (feature 2 <= 1.7)
+       If (feature 0 in {0.0})
+        Predict: 2.0
+       Else (feature 0 not in {0.0})
+        Predict: 6.0
+      Else (feature 2 > 1.7)
+       If (feature 1 in {0.0,3.0,12.0,17.0})
+        If (feature 2 <= 5.25)
+         Predict: 0.25
+        Else (feature 2 > 5.25)
+         Predict: 1.5
+       Else (feature 1 not in {0.0,3.0,12.0,17.0})
+        If (feature 4 <= 1.7)
+         Predict: 4.0
+        Else (feature 4 > 1.7)
+         Predict: 3.111111111111111
+     Else (feature 3 > 4.0)
+      If (feature 3 <= 6.5)
+       If (feature 0 in {0.0,2.0,3.0,5.0,9.0,16.0,17.0,18.0,19.0})
+        If (feature 1 in {3.0,10.0,14.0,16.0})
+         Predict: 0.0
+        Else (feature 1 not in {3.0,10.0,14.0,16.0})
+         Predict: 1.0625
+       Else (feature 0 not in {0.0,2.0,3.0,5.0,9.0,16.0,17.0,18.0,19.0})
+        If (feature 0 in {7.0,8.0,11.0,13.0,15.0})
+         Predict: 2.0384615384615383
+        Else (feature 0 not in {7.0,8.0,11.0,13.0,15.0})
+         Predict: 3.2
+      Else (feature 3 > 6.5)
+       If (feature 1 in {7.0,13.0,18.0})
+        If (feature 4 <= 14.0)
+         Predict: 4.0
+        Else (feature 4 > 14.0)
+         Predict: 0.5
+       Else (feature 1 not in {7.0,13.0,18.0})
+        If (feature 0 in {3.0,9.0,12.0})
+         Predict: 2.75
+        Else (feature 0 not in {3.0,9.0,12.0})
+         Predict: 4.333333333333333
+  Tree 19 (weight 1.0):
+    If (feature 0 in {2.0,3.0,4.0,7.0,8.0,10.0,13.0,16.0,17.0,18.0,19.0})
+     If (feature 3 <= 5.25)
+      If (feature 2 <= 1.4)
+       If (feature 0 in {10.0})
+        If (feature 4 <= 8.0)
+         Predict: 3.0
+        Else (feature 4 > 8.0)
+         Predict: 1.0
+       Else (feature 0 not in {10.0})
+        Predict: 3.0
+      Else (feature 2 > 1.4)
+       If (feature 2 <= 2.9)
+        If (feature 1 in {0.0,2.0,3.0,6.0,8.0,9.0,10.0,13.0,15.0,16.0,19.0})
+         Predict: 0.13636363636363635
+        Else (feature 1 not in {0.0,2.0,3.0,6.0,8.0,9.0,10.0,13.0,15.0,16.0,19.0})
+         Predict: 1.25
+       Else (feature 2 > 2.9)
+        If (feature 1 in {3.0,8.0,9.0,12.0,14.0,17.0})
+         Predict: 0.8536585365853658
+        Else (feature 1 not in {3.0,8.0,9.0,12.0,14.0,17.0})
+         Predict: 1.9166666666666667
+     Else (feature 3 > 5.25)
+      If (feature 1 in {0.0,7.0,9.0,11.0,12.0,16.0,18.0,19.0})
+       If (feature 3 <= 6.0)
+        If (feature 0 in {3.0,17.0})
+         Predict: 0.0
+        Else (feature 0 not in {3.0,17.0})
+         Predict: 1.3333333333333333
+       Else (feature 3 > 6.0)
+        If (feature 0 in {3.0,8.0})
+         Predict: 1.0
+        Else (feature 0 not in {3.0,8.0})
+         Predict: 2.3333333333333335
+      Else (feature 1 not in {0.0,7.0,9.0,11.0,12.0,16.0,18.0,19.0})
+       Predict: 5.0
+    Else (feature 0 not in {2.0,3.0,4.0,7.0,8.0,10.0,13.0,16.0,17.0,18.0,19.0})
+     If (feature 3 <= 8.5)
+      If (feature 1 in {1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,10.0,12.0,13.0,15.0,16.0,17.0,18.0,19.0})
+       If (feature 0 in {0.0,1.0,5.0,9.0,11.0})
+        If (feature 4 <= 4.5)
+         Predict: 1.66
+        Else (feature 4 > 4.5)
+         Predict: 0.9
+       Else (feature 0 not in {0.0,1.0,5.0,9.0,11.0})
+        If (feature 1 in {2.0,3.0,4.0,6.0,7.0,15.0,19.0})
+         Predict: 1.2857142857142858
+        Else (feature 1 not in {2.0,3.0,4.0,6.0,7.0,15.0,19.0})
+         Predict: 3.04
+      Else (feature 1 not in {1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,10.0,12.0,13.0,15.0,16.0,17.0,18.0,19.0})
+       If (feature 3 <= 4.0)
+        If (feature 4 <= 4.0)
+         Predict: 3.1
+        Else (feature 4 > 4.0)
+         Predict: 4.428571428571429
+       Else (feature 3 > 4.0)
+        If (feature 0 in {5.0,12.0})
+         Predict: 1.0
+        Else (feature 0 not in {5.0,12.0})
+         Predict: 5.0
+     Else (feature 3 > 8.5)
+      Predict: 3.0
