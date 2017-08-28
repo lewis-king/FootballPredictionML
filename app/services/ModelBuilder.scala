@@ -25,16 +25,35 @@ object ModelBuilder {
       .getOrCreate()
 
     // For implicit conversions like converting RDDs to DataFrames
+    val files = Array[String]("resources/201617/championship_201617.csv", "resources/201617/leagueone_201617.csv",
+      "resources/201617/leaguetwo_201617.csv")
 
     //Take CSV and transform into DataFrame
-    val df_orig = spark.read
+    val df_e1 = spark.read
       .format("csv")
       .option("header", "true") //reading the headers
       .option("mode", "DROPMALFORMED")
       .option("inferSchema", "true")
       .csv("resources/201617/premierleague_201617.csv")
 
-    val df = df_orig.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "Referee", "B365H", "B365D", "B365A")
+    var df = df_e1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "B365H", "B365D", "B365A")
+
+    files.foreach(fileName => {
+      val df_1 = spark.read
+        .format("csv")
+        .option("header", "true") //reading the headers
+        .option("mode", "DROPMALFORMED")
+        .option("inferSchema", "true")
+        .csv(fileName)
+
+      val df_view = df_1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "B365H", "B365D", "B365A")
+
+      df = df.union(df_view)
+    })
+
+    df.collect.foreach(println)
+
+    //END CSV reading and DF creation
 
     //NOT USING ATM - COULD USE FOR IMPROVED MODEL
     //define the buckets/splits for odds
@@ -60,35 +79,29 @@ object ModelBuilder {
     val assembler = new VectorAssembler().setInputCols(Array("HomeTeamIndex",
       "AwayTeamIndex"/*, "FTHG"*//*, "FTAG"*//*, "FTRIndex"*/,
       "B365H", "B365D", "B365A")).setOutputCol("features")
-    val df3 = assembler.transform(indexed)
+    df = assembler.transform(indexed)
 
     import spark.implicits._
 
     //Set Home Team Goals to predict
-    val df4 = df3.select(df3("FTHG").cast(DoubleType).as("label"), df3("*"))
+    var df_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
 
-    //val labelIndexer = new StringIndexer().setInputCol("FTHG").setOutputCol("label")
-    //val df4 = labelIndexer.fit(df3).transform(df3)
-
-    df4.show()
+    df_home.show()
 
     //Set Away Team Goals to predict
-    val df4_2 = df3.select(df3("FTAG").cast(DoubleType).as("label"), df3("*"))
-
-    //val labelIndexer2 = new StringIndexer().setInputCol("FTAG").setOutputCol("label")
-    //val df4_2 = labelIndexer2.fit(df3).transform(df3)
-
+    val df_away = df.select(df("FTAG").cast(DoubleType).as("label"), df("*"))
 
     //Split the data to give our training data and data to test against
-    val splits = df4.randomSplit(Array(0.7, 0.3))
+    val splits = df_home.randomSplit(Array(0.7, 0.3))
     val (trainingData, testData) = (splits(0), splits(1))
 
     //split2
-    val splits_2 = df4_2.randomSplit(Array(0.7, 0.3))
+    val splits_2 = df_away.randomSplit(Array(0.7, 0.3))
     val (trainingData_2, testData_2) = (splits_2(0), splits_2(1))
 
     //  create the classifier,  set parameters for training**
-    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(5).setNumTrees(20).setFeatureSubsetStrategy("auto").setSeed(5043)
+    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(5).setNumTrees(20)
+      .setFeatureSubsetStrategy("auto").setSeed(5043).setMaxBins(120)
 
     //  use the random forest classifier  to train (fit) the model**
     val model = regressor.fit(trainingData)
@@ -107,7 +120,6 @@ object ModelBuilder {
     model_2.write.overwrite().save("target/model/football_rf_away")
     //new PrintWriter("src/main/resources/tree_def/tree.txt") {write (model.toDebugString); close}
     println(model.toDebugString)
-
   }
 
 }

@@ -17,7 +17,7 @@ object PredictionEngine {
     def predict(matchesJson: Option[JsValue]): List[Prediction] = {
 
         val sparkConf = new SparkConf()
-        sparkConf.setJars(Seq("target/scala-2.11/footballpredictionmlengine_2.11-1.0.jar"))
+        //sparkConf.setJars(Seq("target/scala-2.11/footballpredictionmlengine_2.11-1.0.jar"))
 
         val spark = SparkSession.builder()
           .master("local")
@@ -28,7 +28,7 @@ object PredictionEngine {
         import spark.implicits._
 
         val rdd = spark.sparkContext.makeRDD(matchesJson.get.toString() :: Nil)
-        val df = spark.read.json(rdd)
+        var df = spark.read.json(rdd)
         //Load model
 
         val homeModel = RandomForestRegressionModel.load("target/model/football_rf_home")
@@ -44,9 +44,9 @@ object PredictionEngine {
         val assembler = new VectorAssembler().setInputCols(Array("HomeTeamIndex",
             "AwayTeamIndex"/*, "FTHG"*//*, "FTAG"*//*, "FTRIndex"*/,
             "homeWinOdds", "drawOdds", "awayWinOdds")).setOutputCol("features")
-        val df3 = assembler.transform(awayTeamIndexed)
-        val df3_home = df3.select(df3("FTHG").cast(DoubleType).as("label"), df3("*"))
-        val df3_away = df3.select(df3("FTAG").cast(DoubleType).as("label"), df3("*"))
+        df = assembler.transform(awayTeamIndexed)
+        val df3_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
+        val df3_away = df.select(df("FTAG").cast(DoubleType).as("label"), df("*"))
 
         val homeGoal_predictions = homeModel.transform(df3_home)
         val awayGoal_predictions = awayModel.transform(df3_away)
@@ -59,12 +59,12 @@ object PredictionEngine {
         val awayFilteredPre = awayGoal_predictions.select("homeTeam", "prediction")
         val awayFiltered = awayFilteredPre.withColumnRenamed("prediction", "awayTeamScore")
 
-        val finalDF = homeFiltered.join(awayFiltered, Seq("homeTeam"), joinType="outer")
-        finalDF.show()
+        df = homeFiltered.join(awayFiltered, Seq("homeTeam"), joinType="outer")
+        df.show()
 
         val predictions = mutable.MutableList[Prediction]()
 
-        val predictionArr = finalDF.collect()
+        val predictionArr = df.collect()
         predictionArr.foreach(row => {
           val p = Prediction(row.getAs("homeTeam"), row.getAs("awayTeam"), row.getAs("homeTeamScore"), row.getAs("awayTeamScore"))
           predictions += p
