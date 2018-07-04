@@ -5,6 +5,7 @@ import org.apache.spark.ml.feature.{Bucketizer, StringIndexer, VectorAssembler}
 import org.apache.spark.ml.regression.RandomForestRegressor
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.DoubleType
+import services.helpers.MyAppConfig
 
 object ModelBuilder {
 
@@ -25,9 +26,18 @@ object ModelBuilder {
       .getOrCreate()
 
     // For implicit conversions like converting RDDs to DataFrames
-    val files = Array[String]("resources/201617/championship_201617.csv", "resources/201617/leagueone_201617.csv",
-      "resources/201617/leaguetwo_201617.csv")
-
+    val files = Array[String](
+      //English Leagues
+    "resources/201617/championship_201617.csv",
+    "resources/201617/leagueone_201617.csv",
+    "resources/201617/leaguetwo_201617.csv",
+    "resources/201516/premierleague_201516.csv",
+    "resources/201516/championship_201516.csv",
+    "resources/201516/leagueone_201516.csv",
+    "resources/201516/leaguetwo_201516.csv",
+    //Spanish Leagues
+    "resources/201617/laliga_201617.csv",
+    "resources/201516/laliga_201516.csv")
     //Take CSV and transform into DataFrame
     val df_e1 = spark.read
       .format("csv")
@@ -100,7 +110,7 @@ object ModelBuilder {
     val (trainingData_2, testData_2) = (splits_2(0), splits_2(1))
 
     //  create the classifier,  set parameters for training**
-    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(5).setNumTrees(20)
+    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(8).setNumTrees(20)
       .setFeatureSubsetStrategy("auto").setSeed(5043).setMaxBins(120)
 
     //  use the random forest classifier  to train (fit) the model**
@@ -116,8 +126,13 @@ object ModelBuilder {
     result.show(50)
     result_2.show(50)
 
-    model.write.overwrite().save("target/model/football_rf_home")
-    model_2.write.overwrite().save("target/model/football_rf_away")
+    //model.write.overwrite().save("target/model/football_rf_home")
+    model.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
+      + MyAppConfig.AWS.s3_bucket + "/model/football_rf_home/")
+    //model_2.write.overwrite().save("target/model/football_rf_away")
+    model_2.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
+      + MyAppConfig.AWS.s3_bucket + "/model/football_rf_away")
+
     //new PrintWriter("src/main/resources/tree_def/tree.txt") {write (model.toDebugString); close}
     println(model.toDebugString)
   }

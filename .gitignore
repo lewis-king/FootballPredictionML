@@ -20,3 +20,6 @@ server.pid
 *.class
 *.log
 
+.idea/
+spark-warehouse/
+test/

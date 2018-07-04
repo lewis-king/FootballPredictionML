@@ -19,3 +19,6 @@ libraryDependencies += guice
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion
 libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion
 libraryDependencies += "org.apache.spark" %% "spark-mllib" % sparkVersion
+libraryDependencies += "com.typesafe" % "config" % "1.2.1"
+libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.3.11"
+libraryDependencies += "org.apache.hadoop" % "hadoop-aws" % "2.6.0"
