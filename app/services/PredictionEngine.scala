@@ -34,17 +34,21 @@ object PredictionEngine {
         val homeModel = RandomForestRegressionModel.load("target/model/football_rf_home")
         val awayModel = RandomForestRegressionModel.load("target/model/football_rf_away")
 
-        val stringIndexerModel = StringIndexerModel.load("target/model/stringIndexer")
+        val stringIndexerModel = StringIndexerModel.load("target/model/teamIndexer")
+        val divisionIndexerModel = StringIndexerModel.load("target/model/divisionIndexer")
 
         val homeTeamIndexer = stringIndexerModel.setInputCol("homeTeam").setOutputCol("HomeTeamIndex")
         val homeTeamIndexed = homeTeamIndexer.transform(df)
         val awayTeamIndexer = stringIndexerModel.setInputCol("awayTeam").setOutputCol("AwayTeamIndex")
         val awayTeamIndexed = awayTeamIndexer.transform(homeTeamIndexed)
+        val divisionIndexer = divisionIndexerModel.setInputCol("div").setOutputCol("divIndex")
+        val divisionIndexed = divisionIndexer.transform(awayTeamIndexed)
 
-        val assembler = new VectorAssembler().setInputCols(Array("HomeTeamIndex",
+
+        val assembler = new VectorAssembler().setInputCols(Array("divIndex", "HomeTeamIndex",
             "AwayTeamIndex"/*, "FTHG"*//*, "FTAG"*//*, "FTRIndex"*/,
             "homeWinOdds", "drawOdds", "awayWinOdds")).setOutputCol("features")
-        df = assembler.transform(awayTeamIndexed)
+        df = assembler.transform(divisionIndexed)
         val df3_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
         val df3_away = df.select(df("FTAG").cast(DoubleType).as("label"), df("*"))
 

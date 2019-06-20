@@ -1,8 +1,10 @@
 package services
 
 import org.apache.log4j.{Level, Logger}
+import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.feature.{Bucketizer, StringIndexer, VectorAssembler}
 import org.apache.spark.ml.regression.RandomForestRegressor
+import org.apache.spark.ml.tuning.{CrossValidator, ParamGridBuilder}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.DoubleType
 import services.helpers.MyAppConfig
@@ -28,25 +30,48 @@ object ModelBuilder {
     // For implicit conversions like converting RDDs to DataFrames
     val files = Array[String](
       //English Leagues
-    "resources/201617/championship_201617.csv",
-    "resources/201617/leagueone_201617.csv",
-    "resources/201617/leaguetwo_201617.csv",
-    "resources/201516/premierleague_201516.csv",
-    "resources/201516/championship_201516.csv",
-    "resources/201516/leagueone_201516.csv",
-    "resources/201516/leaguetwo_201516.csv",
-    //Spanish Leagues
-    "resources/201617/laliga_201617.csv",
-    "resources/201516/laliga_201516.csv")
+      "resources/201819/E0.csv",
+      "resources/201819/E1.csv",
+      "resources/201819/E2.csv",
+      "resources/201819/E3.csv",
+
+    "resources/201718/championship.csv",
+    "resources/201718/leagueone.csv",
+    "resources/201718/leaguetwo.csv",
+    "resources/201718/premierleague.csv",
+    "resources/201617/championship.csv",
+    "resources/201617/leagueone.csv",
+    "resources/201617/leaguetwo.csv",
+
+      //Spanish Leagues
+      "resources/201819/SP1.csv",
+    "resources/201718/laliga.csv",
+    "resources/201617/laliga.csv",
+
+    //Italian Leagues
+      "resources/201819/I1.csv",
+    "resources/201718/seriea.csv",
+    "resources/201617/seriea.csv",
+
+    //German Leagues
+    "resources/201819/D1.csv",
+    "resources/201718/bundesliga.csv",
+    "resources/201617/bundesliga.csv",
+
+    //French Leagues
+    "resources/201819/F1.csv",
+    "resources/201718/ligueone.csv",
+    "resources/201617/ligueone.csv",
+    )
     //Take CSV and transform into DataFrame
     val df_e1 = spark.read
       .format("csv")
       .option("header", "true") //reading the headers
       .option("mode", "DROPMALFORMED")
       .option("inferSchema", "true")
-      .csv("resources/201617/premierleague_201617.csv")
+      .csv("resources/201617/premierleague.csv")
 
-    var df = df_e1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "B365H", "B365D", "B365A")
+    var df = df_e1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HS", "AS", "HST", "AST", "HC", "AC", "HY", "AY", "HBP", "ABP", "B365H", "B365D", "B365A")
 
     files.foreach(fileName => {
       val df_1 = spark.read
@@ -56,7 +81,7 @@ object ModelBuilder {
         .option("inferSchema", "true")
         .csv(fileName)
 
-      val df_view = df_1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "B365H", "B365D", "B365A")
+      val df_view = df_1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HS", "AS", "HST", "AST", "HC", "AC", "HY", "AY", "HBP", "ABP", "B365H", "B365D", "B365A")
 
       df = df.union(df_view)
     })
@@ -79,19 +104,29 @@ object ModelBuilder {
     val homeTeamIndexer = new StringIndexer().setInputCol("HomeTeam").setOutputCol("HomeTeamIndex")
     val homeTeamIndexed = homeTeamIndexer.fit(df).transform(df)
     val stringIndexerModel = homeTeamIndexer.fit(df)
-    stringIndexerModel.write.overwrite().save("target/model/stringIndexer")
+    stringIndexerModel.write.overwrite().save("target/model/teamIndexer")
     val awayTeamIndexer = stringIndexerModel.setInputCol("AwayTeam").setOutputCol("AwayTeamIndex")
     val awayTeamIndexed = stringIndexerModel.transform(homeTeamIndexed)
 
     val resultIndexer = new StringIndexer().setInputCol("FTR").setOutputCol("FTRIndex")
     val indexed = resultIndexer.fit(awayTeamIndexed).transform(awayTeamIndexed)
+    val divisionIndexer = new StringIndexer().setInputCol("Div").setOutputCol("DivIndex")
+    val divisionIndexerModel = divisionIndexer.fit(indexed);
+    divisionIndexerModel.write.overwrite().save("target/model/divisionIndex")
+    val indexed2 = divisionIndexerModel.transform(indexed);
 
-    val assembler = new VectorAssembler().setInputCols(Array("HomeTeamIndex",
-      "AwayTeamIndex"/*, "FTHG"*//*, "FTAG"*//*, "FTRIndex"*/,
+    val assembler = new VectorAssembler().setInputCols(Array("Div", "HomeTeamIndex",
+      "AwayTeamIndex", "FTHG", "FTAG", /*"FTRIndex", "HS", "AS", "HST", "AST",*/
       "B365H", "B365D", "B365A")).setOutputCol("features")
-    df = assembler.transform(indexed)
+
+    indexed2.show()
+
+    df = assembler.transform(indexed2)
+
+    df.show()
 
     import spark.implicits._
+    import org.apache.spark.sql.functions._
 
     //Set Home Team Goals to predict
     var df_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
@@ -111,7 +146,7 @@ object ModelBuilder {
 
     //  create the classifier,  set parameters for training**
     val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(8).setNumTrees(20)
-      .setFeatureSubsetStrategy("auto").setSeed(5043).setMaxBins(120)
+      .setFeatureSubsetStrategy("auto").setSeed(5043).setMaxBins(200)
 
     //  use the random forest classifier  to train (fit) the model**
     val model = regressor.fit(trainingData)
@@ -123,18 +158,43 @@ object ModelBuilder {
     // As you can see, the previous model transform produced a new columns: rawPrediction, probablity and prediction.**
     val result = predictions.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
     val result_2 = predictions_2.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
+
     result.show(50)
     result_2.show(50)
 
-    //model.write.overwrite().save("target/model/football_rf_home")
-    model.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
-      + MyAppConfig.AWS.s3_bucket + "/model/football_rf_home/")
-    //model_2.write.overwrite().save("target/model/football_rf_away")
-    model_2.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
-      + MyAppConfig.AWS.s3_bucket + "/model/football_rf_away")
+    model.write.overwrite().save("target/model/football_rf_home")
+    //model.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
+    //  + MyAppConfig.AWS.s3_bucket + "/model/football_rf_home/")
+    model_2.write.overwrite().save("target/model/football_rf_away")
+    //model_2.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
+    //  + MyAppConfig.AWS.s3_bucket + "/model/football_rf_away")
 
     //new PrintWriter("src/main/resources/tree_def/tree.txt") {write (model.toDebugString); close}
     println(model.toDebugString)
+
+    // "rmse" (default): root mean squared error
+    // "mse": mean squared error
+    // "r2": R2 metric
+    // "mae": mean absolute error
+    val metric = "rmse"
+    val evaluator = new RegressionEvaluator()
+      .setLabelCol("label")
+      .setPredictionCol("prediction")
+      .setMetricName(metric)
+
+    val paramGrid = new ParamGridBuilder().build()
+    val cv = new CrossValidator()
+      .setEstimator(regressor)
+      .setEvaluator(evaluator)
+      .setEstimatorParamMaps(paramGrid)
+      .setNumFolds(3)
+
+    val cvmodel = cv.fit(trainingData)
+    val cvpredictions = cvmodel.transform(testData)
+    cvpredictions.show
+    val rmse = evaluator.evaluate(cvpredictions)
+    println(rmse)
+
   }
 
 }
