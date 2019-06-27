@@ -30,38 +30,38 @@ object ModelBuilder {
     // For implicit conversions like converting RDDs to DataFrames
     val files = Array[String](
       //English Leagues
-      "resources/201819/E0.csv",
-      "resources/201819/E1.csv",
+      "resources/201819/E0.csv"
+/*      "resources/201819/E1.csv",
       "resources/201819/E2.csv",
       "resources/201819/E3.csv",
 
-    "resources/201718/championship.csv",
-    "resources/201718/leagueone.csv",
-    "resources/201718/leaguetwo.csv",
-    "resources/201718/premierleague.csv",
-    "resources/201617/championship.csv",
-    "resources/201617/leagueone.csv",
-    "resources/201617/leaguetwo.csv",
+    "resources/201718/E1.csv",
+    "resources/201718/E2.csv",
+    "resources/201718/E3.csv",
+    "resources/201718/E0.csv",
+    "resources/201617/E1.csv",
+    "resources/201617/E2.csv",
+    "resources/201617/E3.csv",
 
       //Spanish Leagues
       "resources/201819/SP1.csv",
-    "resources/201718/laliga.csv",
-    "resources/201617/laliga.csv",
+    "resources/201718/SP1.csv",
+    "resources/201617/SP1.csv",
 
     //Italian Leagues
       "resources/201819/I1.csv",
-    "resources/201718/seriea.csv",
-    "resources/201617/seriea.csv",
+    "resources/201718/I1.csv",
+    "resources/201617/I1.csv",
 
     //German Leagues
     "resources/201819/D1.csv",
-    "resources/201718/bundesliga.csv",
-    "resources/201617/bundesliga.csv",
+    "resources/201718/D1.csv",
+    "resources/201617/D1.csv",
 
     //French Leagues
     "resources/201819/F1.csv",
-    "resources/201718/ligueone.csv",
-    "resources/201617/ligueone.csv",
+    "resources/201718/F1.csv",
+    "resources/201617/F1.csv"*/
     )
     //Take CSV and transform into DataFrame
     val df_e1 = spark.read
@@ -69,9 +69,9 @@ object ModelBuilder {
       .option("header", "true") //reading the headers
       .option("mode", "DROPMALFORMED")
       .option("inferSchema", "true")
-      .csv("resources/201617/premierleague.csv")
+      .csv("resources/201617/E0.csv")
 
-    var df = df_e1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HS", "AS", "HST", "AST", "HC", "AC", "HY", "AY", "HBP", "ABP", "B365H", "B365D", "B365A")
+    var df = df_e1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway")
 
     files.foreach(fileName => {
       val df_1 = spark.read
@@ -81,7 +81,7 @@ object ModelBuilder {
         .option("inferSchema", "true")
         .csv(fileName)
 
-      val df_view = df_1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HS", "AS", "HST", "AST", "HC", "AC", "HY", "AY", "HBP", "ABP", "B365H", "B365D", "B365A")
+      val df_view = df_1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway")
 
       df = df.union(df_view)
     })
@@ -92,14 +92,14 @@ object ModelBuilder {
 
     //NOT USING ATM - COULD USE FOR IMPROVED MODEL
     //define the buckets/splits for odds
-    val homeOddsSplits = Array(1.0,1.3,1.6,1.9,2.2,2.5,2.8,3.1,3.4,3.8,6.0,10.0,20.0,50.0,Double.PositiveInfinity)
+    /*val homeOddsSplits = Array(1.0,1.3,1.6,1.9,2.2,2.5,2.8,3.1,3.4,3.8,6.0,10.0,20.0,50.0,Double.PositiveInfinity)
     val drawOddsSplits = Array(1.0,1.3,1.6,1.9,2.2,2.5,2.8,3.1,3.4,3.8,6.0,10.0,20.0,50.0,Double.PositiveInfinity)
     val awayOddsSplits = Array(1.0,1.3,1.6,1.9,2.2,2.5,2.8,3.1,3.4,3.8,6.0,10.0,20.0,50.0,Double.PositiveInfinity)
     val homeOddsBucketize = new Bucketizer().setInputCol("B365H").setOutputCol("homeOddsBucketed").setSplits(homeOddsSplits)
     val drawOddsBucketize = new Bucketizer().setInputCol("B365D").setOutputCol("drawOddsBucketed").setSplits(drawOddsSplits)
     val awayOddsBucketize = new Bucketizer().setInputCol("B365A").setOutputCol("awayOddsBucketed").setSplits(awayOddsSplits)
 
-    val newDF = homeOddsBucketize.transform(df).select("B365H","homeOddsBucketed")
+    val newDF = homeOddsBucketize.transform(df).select("B365H","homeOddsBucketed")*/
     // END
     val homeTeamIndexer = new StringIndexer().setInputCol("HomeTeam").setOutputCol("HomeTeamIndex")
     val homeTeamIndexed = homeTeamIndexer.fit(df).transform(df)
@@ -109,15 +109,17 @@ object ModelBuilder {
     val awayTeamIndexed = stringIndexerModel.transform(homeTeamIndexed)
 
     val resultIndexer = new StringIndexer().setInputCol("FTR").setOutputCol("FTRIndex")
-    val indexed = resultIndexer.fit(awayTeamIndexed).transform(awayTeamIndexed)
+    val indexedModel = resultIndexer.fit(awayTeamIndexed)
+    indexedModel.write.overwrite().save("target/model/resultIndex")
+    val indexed = indexedModel.transform(awayTeamIndexed);
     val divisionIndexer = new StringIndexer().setInputCol("Div").setOutputCol("DivIndex")
     val divisionIndexerModel = divisionIndexer.fit(indexed);
-    divisionIndexerModel.write.overwrite().save("target/model/divisionIndex")
+    divisionIndexerModel.write.overwrite().save("target/model/divisionIndexer")
     val indexed2 = divisionIndexerModel.transform(indexed);
 
-    val assembler = new VectorAssembler().setInputCols(Array("Div", "HomeTeamIndex",
-      "AwayTeamIndex", "FTHG", "FTAG", /*"FTRIndex", "HS", "AS", "HST", "AST",*/
-      "B365H", "B365D", "B365A")).setOutputCol("features")
+    val assembler = new VectorAssembler().setInputCols(Array("DivIndex", "HomeTeamIndex",
+      "AwayTeamIndex", "FTHG", "FTAG", /*"FTRIndex", */"HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+      )).setOutputCol("features")
 
     indexed2.show()
 

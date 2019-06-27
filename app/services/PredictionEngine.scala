@@ -43,11 +43,11 @@ object PredictionEngine {
         val awayTeamIndexed = awayTeamIndexer.transform(homeTeamIndexed)
         val divisionIndexer = divisionIndexerModel.setInputCol("div").setOutputCol("divIndex")
         val divisionIndexed = divisionIndexer.transform(awayTeamIndexed)
-
+        //will need Full Time result index (FTR Index)
 
         val assembler = new VectorAssembler().setInputCols(Array("divIndex", "HomeTeamIndex",
-            "AwayTeamIndex"/*, "FTHG"*//*, "FTAG"*//*, "FTRIndex"*/,
-            "homeWinOdds", "drawOdds", "awayWinOdds")).setOutputCol("features")
+          "AwayTeamIndex", "FTHG", "FTAG", /*"FTRIndex",*/ "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+            )).setOutputCol("features")
         df = assembler.transform(divisionIndexed)
         val df3_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
         val df3_away = df.select(df("FTAG").cast(DoubleType).as("label"), df("*"))
