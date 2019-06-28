@@ -118,14 +118,14 @@ object ModelBuilder {
     val indexed2 = divisionIndexerModel.transform(indexed);
 
     val assembler = new VectorAssembler().setInputCols(Array("DivIndex", "HomeTeamIndex",
-      "AwayTeamIndex", "FTHG", "FTAG", /*"FTRIndex", */"HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+      "AwayTeamIndex", /*"FTHG", "FTAG", "FTRIndex", */"HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
       )).setOutputCol("features")
 
     indexed2.show()
 
     df = assembler.transform(indexed2)
 
-    df.show()
+    df.show(20, false)
 
     import spark.implicits._
     import org.apache.spark.sql.functions._
@@ -146,9 +146,10 @@ object ModelBuilder {
     val splits_2 = df_away.randomSplit(Array(0.7, 0.3))
     val (trainingData_2, testData_2) = (splits_2(0), splits_2(1))
 
+    //val categoricalFeaturesInfo = Map[Int, Int]()
     //  create the classifier,  set parameters for training**
-    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(8).setNumTrees(20)
-      .setFeatureSubsetStrategy("auto").setSeed(5043).setMaxBins(200)
+    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(12).setNumTrees(20)
+      .setFeatureSubsetStrategy("auto").setMaxBins(200)
 
     //  use the random forest classifier  to train (fit) the model**
     val model = regressor.fit(trainingData)

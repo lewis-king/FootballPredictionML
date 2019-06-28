@@ -2,11 +2,10 @@ package services
 
 import model.{Match, Prediction}
 import org.apache.spark.ml.regression.RandomForestRegressionModel
-import org.apache.spark.sql.SparkSession
-
+import org.apache.spark.sql.{SparkSession, functions}
 import org.apache.spark.ml.feature.{StringIndexerModel, VectorAssembler}
 import org.apache.spark.sql.types.DoubleType
-import org.apache.spark.{SparkConf}
+import org.apache.spark.SparkConf
 import play.api.libs.json.JsValue
 
 import scala.collection._
@@ -46,11 +45,13 @@ object PredictionEngine {
         //will need Full Time result index (FTR Index)
 
         val assembler = new VectorAssembler().setInputCols(Array("divIndex", "HomeTeamIndex",
-          "AwayTeamIndex", "FTHG", "FTAG", /*"FTRIndex",*/ "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+          "AwayTeamIndex", /*"FTHG", "FTAG", "FTRIndex",*/ "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
             )).setOutputCol("features")
         df = assembler.transform(divisionIndexed)
-        val df3_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
-        val df3_away = df.select(df("FTAG").cast(DoubleType).as("label"), df("*"))
+        val df1 = df.withColumn("FTHG", functions.lit(0.0))
+        val df2 = df1.withColumn("FTAG", functions.lit(0.0))
+        val df3_home = df2.select(df2("FTHG").cast(DoubleType).as("label"), df2("*"))
+        val df3_away = df2.select(df2("FTAG").cast(DoubleType).as("label"), df2("*"))
 
         val homeGoal_predictions = homeModel.transform(df3_home)
         val awayGoal_predictions = awayModel.transform(df3_away)
