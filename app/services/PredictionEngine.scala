@@ -36,16 +36,16 @@ object PredictionEngine {
         val stringIndexerModel = StringIndexerModel.load("target/model/teamIndexer")
         val divisionIndexerModel = StringIndexerModel.load("target/model/divisionIndexer")
 
-        val homeTeamIndexer = stringIndexerModel.setInputCol("homeTeam").setOutputCol("HomeTeamIndex")
+        val homeTeamIndexer = stringIndexerModel.setInputCol("homeTeam").setOutputCol("HomeTeamIndex").setHandleInvalid("keep") // options are "keep", "error" or "skip"
         val homeTeamIndexed = homeTeamIndexer.transform(df)
-        val awayTeamIndexer = stringIndexerModel.setInputCol("awayTeam").setOutputCol("AwayTeamIndex")
+        val awayTeamIndexer = stringIndexerModel.setInputCol("awayTeam").setOutputCol("AwayTeamIndex").setHandleInvalid("keep") // options are "keep", "error" or "skip"
         val awayTeamIndexed = awayTeamIndexer.transform(homeTeamIndexed)
         val divisionIndexer = divisionIndexerModel.setInputCol("div").setOutputCol("divIndex")
         val divisionIndexed = divisionIndexer.transform(awayTeamIndexed)
         //will need Full Time result index (FTR Index)
 
         val assembler = new VectorAssembler().setInputCols(Array("divIndex", "HomeTeamIndex",
-          "AwayTeamIndex", /*"FTHG", "FTAG", "FTRIndex",*/ "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+          "AwayTeamIndex", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
             )).setOutputCol("features")
         df = assembler.transform(divisionIndexed)
         val df1 = df.withColumn("FTHG", functions.lit(0.0))

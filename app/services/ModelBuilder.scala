@@ -101,11 +101,11 @@ object ModelBuilder {
 
     val newDF = homeOddsBucketize.transform(df).select("B365H","homeOddsBucketed")*/
     // END
-    val homeTeamIndexer = new StringIndexer().setInputCol("HomeTeam").setOutputCol("HomeTeamIndex")
+    val homeTeamIndexer = new StringIndexer().setInputCol("HomeTeam").setOutputCol("HomeTeamIndex").setHandleInvalid("keep") // options are "keep", "error" or "skip"
     val homeTeamIndexed = homeTeamIndexer.fit(df).transform(df)
     val stringIndexerModel = homeTeamIndexer.fit(df)
     stringIndexerModel.write.overwrite().save("target/model/teamIndexer")
-    val awayTeamIndexer = stringIndexerModel.setInputCol("AwayTeam").setOutputCol("AwayTeamIndex")
+    val awayTeamIndexer = stringIndexerModel.setInputCol("AwayTeam").setOutputCol("AwayTeamIndex").setHandleInvalid("keep") // options are "keep", "error" or "skip"
     val awayTeamIndexed = stringIndexerModel.transform(homeTeamIndexed)
 
     val resultIndexer = new StringIndexer().setInputCol("FTR").setOutputCol("FTRIndex")
@@ -118,7 +118,7 @@ object ModelBuilder {
     val indexed2 = divisionIndexerModel.transform(indexed);
 
     val assembler = new VectorAssembler().setInputCols(Array("DivIndex", "HomeTeamIndex",
-      "AwayTeamIndex", /*"FTHG", "FTAG", "FTRIndex", */"HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+      "AwayTeamIndex", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
       )).setOutputCol("features")
 
     indexed2.show()
