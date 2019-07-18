@@ -30,8 +30,8 @@ object ModelBuilder {
     // For implicit conversions like converting RDDs to DataFrames
     val files = Array[String](
       //English Leagues
-      "resources/201819/E0.csv"
-/*      "resources/201819/E1.csv",
+      "resources/201819/E0.csv",
+      "resources/201819/E1.csv",
       "resources/201819/E2.csv",
       "resources/201819/E3.csv",
 
@@ -61,7 +61,7 @@ object ModelBuilder {
     //French Leagues
     "resources/201819/F1.csv",
     "resources/201718/F1.csv",
-    "resources/201617/F1.csv"*/
+    "resources/201617/F1.csv"
     )
     //Take CSV and transform into DataFrame
     val df_e1 = spark.read
@@ -118,7 +118,9 @@ object ModelBuilder {
     val indexed2 = divisionIndexerModel.transform(indexed);
 
     val assembler = new VectorAssembler().setInputCols(Array("DivIndex", "HomeTeamIndex",
-      "AwayTeamIndex", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway"
+      "AwayTeamIndex", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted",
+      "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway",
+      "HomeTeamAvgGoalsScoredOverallForm", "HomeTeamAvgGoalsConcededOverallForm", "AwayTeamAvgGoalsScoredOverallForm", "AwayTeamAvgGoalsConcededOverallForm", "HomeTeamAvgGoalsScoredHomeForm", "HomeTeamAvgGoalsConcededHomeForm", "AwayTeamAvgGoalsScoredAwayForm", "AwayTeamAvgGoalsConcededAwayForm"
       )).setOutputCol("features")
 
     indexed2.show()
