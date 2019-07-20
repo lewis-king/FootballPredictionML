@@ -146,6 +146,8 @@ object ModelBuilder {
     val splits = df_home.randomSplit(Array(0.7, 0.3))
     val (trainingData, testData) = (splits(0), splits(1))
 
+    //WHY AM I USING TWO DIFFERENT TRAINING DATAS TO TEST AWAY GOAL PREDICTION, SHOULD BE ABLE TO USE FIRST!? CAN'T IT JUST USED SPLITS AGAIN FOR CREATING TESTDATA_2?
+    //I WANT TO TRY AND PREDICT HG AND AG AND ADD TO SAME DF FOR RESULTS.. EVEN THOUGH YOU CAN ONLY VALIDATE ONE AT A TIME..
     //split2
     val splits_2 = df_away.randomSplit(Array(0.7, 0.3))
     val (trainingData_2, testData_2) = (splits_2(0), splits_2(1))
@@ -166,8 +168,8 @@ object ModelBuilder {
     val result = predictions.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
     val result_2 = predictions_2.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
 
-    result.show(50)
-    result_2.show(50)
+    result.show(200)
+    result_2.show(200)
 
     model.write.overwrite().save("target/model/football_rf_home")
     //model.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
@@ -198,7 +200,7 @@ object ModelBuilder {
 
     val cvmodel = cv.fit(trainingData)
     val cvpredictions = cvmodel.transform(testData)
-    cvpredictions.show
+    cvpredictions.select("*").show(200)
     val rmse = evaluator.evaluate(cvpredictions)
     println(rmse)
 
