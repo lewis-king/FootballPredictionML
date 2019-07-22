@@ -30,6 +30,11 @@ object ModelBuilder {
     // For implicit conversions like converting RDDs to DataFrames
     val files = Array[String](
       //English Leagues
+      //"resources/201920/E0.csv",
+      //"resources/201920/E1.csv",
+      //"resources/201920/E2.csv",
+      //"resources/201920/E3.csv",
+
       "resources/201819/E0.csv",
       "resources/201819/E1.csv",
       "resources/201819/E2.csv",
@@ -44,24 +49,38 @@ object ModelBuilder {
     "resources/201617/E3.csv",
 
       //Spanish Leagues
+      //"resources/201920/SP1.csv",
       "resources/201819/SP1.csv",
     "resources/201718/SP1.csv",
     "resources/201617/SP1.csv",
 
     //Italian Leagues
+      //"resources/201920/I1.csv",
       "resources/201819/I1.csv",
     "resources/201718/I1.csv",
     "resources/201617/I1.csv",
 
     //German Leagues
+      //"resources/201920/D1.csv",
     "resources/201819/D1.csv",
     "resources/201718/D1.csv",
     "resources/201617/D1.csv",
 
     //French Leagues
+      //"resources/201920/F1.csv",
     "resources/201819/F1.csv",
     "resources/201718/F1.csv",
-    "resources/201617/F1.csv"
+    "resources/201617/F1.csv",
+
+    //Scottish Leagues
+      "resources/201819/SC0.csv",
+      "resources/201718/SC0.csv",
+      "resources/201617/SC0.csv",
+
+    //Dutch Leagues
+      "resources/201819/N1.csv",
+      "resources/201718/N1.csv",
+      "resources/201617/N1.csv"
     )
     //Take CSV and transform into DataFrame
     val df_e1 = spark.read
@@ -125,8 +144,6 @@ object ModelBuilder {
       "HomeTeamAvgGoalsScoredOverallForm", "HomeTeamAvgGoalsConcededOverallForm", "AwayTeamAvgGoalsScoredOverallForm", "AwayTeamAvgGoalsConcededOverallForm", "HomeTeamAvgGoalsScoredHomeForm", "HomeTeamAvgGoalsConcededHomeForm", "AwayTeamAvgGoalsScoredAwayForm", "AwayTeamAvgGoalsConcededAwayForm"
       )).setOutputCol("features")
 
-    indexed2.show()
-
     df = assembler.transform(indexed2)
 
     df.show(20, false)
@@ -137,8 +154,6 @@ object ModelBuilder {
     //Set Home Team Goals to predict
     var df_home = df.select(df("FTHG").cast(DoubleType).as("label"), df("*"))
 
-    df_home.show()
-
     //Set Away Team Goals to predict
     val df_away = df.select(df("FTAG").cast(DoubleType).as("label"), df("*"))
 
@@ -146,8 +161,6 @@ object ModelBuilder {
     val splits = df_home.randomSplit(Array(0.7, 0.3))
     val (trainingData, testData) = (splits(0), splits(1))
 
-    //WHY AM I USING TWO DIFFERENT TRAINING DATAS TO TEST AWAY GOAL PREDICTION, SHOULD BE ABLE TO USE FIRST!? CAN'T IT JUST USED SPLITS AGAIN FOR CREATING TESTDATA_2?
-    //I WANT TO TRY AND PREDICT HG AND AG AND ADD TO SAME DF FOR RESULTS.. EVEN THOUGH YOU CAN ONLY VALIDATE ONE AT A TIME..
     //split2
     val splits_2 = df_away.randomSplit(Array(0.7, 0.3))
     val (trainingData_2, testData_2) = (splits_2(0), splits_2(1))
@@ -165,11 +178,13 @@ object ModelBuilder {
     val predictions = model.transform(testData)
     val predictions_2 = model_2.transform(testData_2)
     // As you can see, the previous model transform produced a new columns: rawPrediction, probablity and prediction.**
-    val result = predictions.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
-    val result_2 = predictions_2.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
+    val result = predictions.select("Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
+    val result_2 = predictions_2.select("Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction")
 
-    result.show(200)
-    result_2.show(200)
+    println("<<<<<<<<<<Full Time Home Goal Predictions>>>>>>>>>>")
+    result.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction").show(200)
+    println("<<<<<<<<<<Full Time Away Goal Predictions>>>>>>>>>>")
+    result_2.select("Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction").show(200)
 
     model.write.overwrite().save("target/model/football_rf_home")
     //model.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
@@ -179,7 +194,7 @@ object ModelBuilder {
     //  + MyAppConfig.AWS.s3_bucket + "/model/football_rf_away")
 
     //new PrintWriter("src/main/resources/tree_def/tree.txt") {write (model.toDebugString); close}
-    println(model.toDebugString)
+    //println(model.toDebugString)
 
     // "rmse" (default): root mean squared error
     // "mse": mean squared error
@@ -200,7 +215,7 @@ object ModelBuilder {
 
     val cvmodel = cv.fit(trainingData)
     val cvpredictions = cvmodel.transform(testData)
-    cvpredictions.select("*").show(200)
+    cvpredictions.select("HomeTeam", "AwayTeam", "FTHG", "FTAG", "prediction").show(200)
     val rmse = evaluator.evaluate(cvpredictions)
     println(rmse)
 

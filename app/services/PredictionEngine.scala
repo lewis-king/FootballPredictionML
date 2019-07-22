@@ -65,13 +65,16 @@ object PredictionEngine {
         val homeFiltered = homeFilteredPre.withColumnRenamed("prediction", "homeTeamScore")
         val awayFilteredPre = awayGoal_predictions.select("homeTeam", "prediction")
         val awayFiltered = awayFilteredPre.withColumnRenamed("prediction", "awayTeamScore")
-
         df = homeFiltered.join(awayFiltered, Seq("homeTeam"), joinType="outer")
         df.show()
 
+        import org.apache.spark.sql.functions.round
+        val homeScoreRounded = df.withColumn("homeTeamScore", round($"homeTeamScore", 2))
+        val dfRounded = homeScoreRounded.withColumn("awayTeamScore", round($"awayTeamScore", 2))
+
         val predictions = mutable.MutableList[Prediction]()
 
-        val predictionArr = df.collect()
+        val predictionArr = dfRounded.collect()
         predictionArr.foreach(row => {
           val p = Prediction(row.getAs("homeTeam"), row.getAs("awayTeam"), row.getAs("homeTeamScore"), row.getAs("awayTeamScore"))
           predictions += p
