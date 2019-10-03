@@ -1,5 +1,7 @@
 package services
 
+import java.io.PrintWriter
+
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.feature.{Bucketizer, StringIndexer, VectorAssembler}
@@ -47,40 +49,51 @@ object ModelBuilder {
     "resources/201617/E1.csv",
     "resources/201617/E2.csv",
     "resources/201617/E3.csv",
+      "resources/201516/E1.csv",
+      "resources/201516/E2.csv",
+      "resources/201516/E3.csv",
 
       //Spanish Leagues
       //"resources/201920/SP1.csv",
       "resources/201819/SP1.csv",
     "resources/201718/SP1.csv",
     "resources/201617/SP1.csv",
+      "resources/201516/SP1.csv",
 
     //Italian Leagues
       //"resources/201920/I1.csv",
       "resources/201819/I1.csv",
     "resources/201718/I1.csv",
     "resources/201617/I1.csv",
+      "resources/201516/I1.csv",
 
     //German Leagues
       //"resources/201920/D1.csv",
     "resources/201819/D1.csv",
     "resources/201718/D1.csv",
     "resources/201617/D1.csv",
+      "resources/201516/D1.csv",
 
     //French Leagues
       //"resources/201920/F1.csv",
     "resources/201819/F1.csv",
     "resources/201718/F1.csv",
     "resources/201617/F1.csv",
+      "resources/201516/F1.csv",
 
     //Scottish Leagues
+      //"resources/201920/SC0.csv",
       "resources/201819/SC0.csv",
       "resources/201718/SC0.csv",
       "resources/201617/SC0.csv",
+      "resources/201516/SC0.csv",
 
     //Dutch Leagues
+      //"resources/201920/N1.csv",
       "resources/201819/N1.csv",
       "resources/201718/N1.csv",
-      "resources/201617/N1.csv"
+      "resources/201617/N1.csv",
+      "resources/201516/N1.csv"
     )
     //Take CSV and transform into DataFrame
     val df_e1 = spark.read
@@ -91,7 +104,7 @@ object ModelBuilder {
       .csv("resources/201617/E0.csv")
 
     var df = df_e1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway",
-      "HomeTeamAvgGoalsScoredOverallForm", "HomeTeamAvgGoalsConcededOverallForm", "AwayTeamAvgGoalsScoredOverallForm", "AwayTeamAvgGoalsConcededOverallForm", "HomeTeamAvgGoalsScoredHomeForm", "HomeTeamAvgGoalsConcededHomeForm", "AwayTeamAvgGoalsScoredAwayForm", "AwayTeamAvgGoalsConcededAwayForm")
+      "HomeTeamAvgGoalsScoredOverallL3", "HomeTeamAvgGoalsConcededOverallL3", "AwayTeamAvgGoalsScoredOverallL3", "AwayTeamAvgGoalsConcededOverallL3", "HomeTeamAvgGoalsScoredHomeL3", "HomeTeamAvgGoalsConcededHomeL3", "AwayTeamAvgGoalsScoredAwayL3", "AwayTeamAvgGoalsConcededAwayL3")
 
     files.foreach(fileName => {
       val df_1 = spark.read
@@ -102,7 +115,7 @@ object ModelBuilder {
         .csv(fileName)
 
       val df_view = df_1.select("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "FTR", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted", "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway",
-        "HomeTeamAvgGoalsScoredOverallForm", "HomeTeamAvgGoalsConcededOverallForm", "AwayTeamAvgGoalsScoredOverallForm", "AwayTeamAvgGoalsConcededOverallForm", "HomeTeamAvgGoalsScoredHomeForm", "HomeTeamAvgGoalsConcededHomeForm", "AwayTeamAvgGoalsScoredAwayForm", "AwayTeamAvgGoalsConcededAwayForm")
+        "HomeTeamAvgGoalsScoredOverallL3", "HomeTeamAvgGoalsConcededOverallL3", "AwayTeamAvgGoalsScoredOverallL3", "AwayTeamAvgGoalsConcededOverallL3", "HomeTeamAvgGoalsScoredHomeL3", "HomeTeamAvgGoalsConcededHomeL3", "AwayTeamAvgGoalsScoredAwayL3", "AwayTeamAvgGoalsConcededAwayL3")
 
       df = df.union(df_view)
     })
@@ -135,13 +148,15 @@ object ModelBuilder {
     val indexed = indexedModel.transform(awayTeamIndexed);
     val divisionIndexer = new StringIndexer().setInputCol("Div").setOutputCol("DivIndex")
     val divisionIndexerModel = divisionIndexer.fit(indexed);
-    divisionIndexerModel.write.overwrite().save("target/model/divisionIndexer")
+    divisionIndexerModel.write.overwrite().save("target/model/divisionIndexegitr")
     val indexed2 = divisionIndexerModel.transform(indexed);
 
-    val assembler = new VectorAssembler().setInputCols(Array("DivIndex", "HomeTeamIndex",
-      "AwayTeamIndex", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted",
+    val assembler = new VectorAssembler().setInputCols(Array("DivIndex",
+      /*"HomeTeamIndex", "AwayTeamIndex",*/
+      /*"HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3",*/
+      "HomeTeamPromoted", "AwayTeamPromoted",
       "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway",
-      "HomeTeamAvgGoalsScoredOverallForm", "HomeTeamAvgGoalsConcededOverallForm", "AwayTeamAvgGoalsScoredOverallForm", "AwayTeamAvgGoalsConcededOverallForm", "HomeTeamAvgGoalsScoredHomeForm", "HomeTeamAvgGoalsConcededHomeForm", "AwayTeamAvgGoalsScoredAwayForm", "AwayTeamAvgGoalsConcededAwayForm"
+      "HomeTeamAvgGoalsScoredOverallL3", "HomeTeamAvgGoalsConcededOverallL3", "AwayTeamAvgGoalsScoredOverallL3", "AwayTeamAvgGoalsConcededOverallL3", "HomeTeamAvgGoalsScoredHomeL3", "HomeTeamAvgGoalsConcededHomeL3", "AwayTeamAvgGoalsScoredAwayL3", "AwayTeamAvgGoalsConcededAwayL3"
       )).setOutputCol("features")
 
     df = assembler.transform(indexed2)
@@ -165,12 +180,12 @@ object ModelBuilder {
     val splits_2 = df_away.randomSplit(Array(0.7, 0.3))
     val (trainingData_2, testData_2) = (splits_2(0), splits_2(1))
 
-    //val categoricalFeaturesInfo = Map[Int, Int]()
+    val categoricalFeaturesInfo = Map[Int, Int](0 -> 10, 1 -> 2, 2 -> 2)
     //  create the classifier,  set parameters for training**
-    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(12).setNumTrees(20)
-      .setFeatureSubsetStrategy("auto").setMaxBins(200)
+    val regressor = new RandomForestRegressor().setImpurity("variance").setMaxDepth(18).setNumTrees(18)
+      .setFeatureSubsetStrategy("auto").setMaxBins(32)
 
-    //  use the random forest classifier  to train (fit) the model**
+    //  use the random forest regressor  to train (fit) the model**
     val model = regressor.fit(trainingData)
     val model_2 = regressor.fit(trainingData_2)
 
@@ -193,7 +208,7 @@ object ModelBuilder {
     //model_2.write.overwrite().save("s3://" +MyAppConfig.AWS.s3_access_key + ":" + MyAppConfig.AWS.s3_secret_key + "@"
     //  + MyAppConfig.AWS.s3_bucket + "/model/football_rf_away")
 
-    //new PrintWriter("src/main/resources/tree_def/tree.txt") {write (model.toDebugString); close}
+    new PrintWriter("resources/tree_def/tree.txt") {write (model.toDebugString); close}
     //println(model.toDebugString)
 
     // "rmse" (default): root mean squared error

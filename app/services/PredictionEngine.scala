@@ -40,14 +40,16 @@ object PredictionEngine {
         val homeTeamIndexed = homeTeamIndexer.transform(df)
         val awayTeamIndexer = stringIndexerModel.setInputCol("awayTeam").setOutputCol("AwayTeamIndex").setHandleInvalid("keep") // options are "keep", "error" or "skip"
         val awayTeamIndexed = awayTeamIndexer.transform(homeTeamIndexed)
-        val divisionIndexer = divisionIndexerModel.setInputCol("div").setOutputCol("divIndex")
+        val divisionIndexer = divisionIndexerModel.setInputCol("div").setOutputCol("DivIndex")
         val divisionIndexed = divisionIndexer.transform(awayTeamIndexed)
         //will need Full Time result index (FTR Index)
 
-        val assembler = new VectorAssembler().setInputCols(Array("divIndex", "HomeTeamIndex",
-          "AwayTeamIndex", "HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3", "HomeTeamPromoted", "AwayTeamPromoted",
+        val assembler = new VectorAssembler().setInputCols(Array("DivIndex",
+            /*"HomeTeamIndex", "AwayTeamIndex",*/
+            /*"HomeTeamOverallFormL3", "AwayTeamOverallFormL3", "HomeTeamHomeFormL3", "AwayTeamAwayFormL3",*/
+            "HomeTeamPromoted", "AwayTeamPromoted",
             "HomeTeamAvgGoalsScoredOverall", "HomeTeamAvgGoalsConcededOverall", "AwayTeamAvgGoalsScoredOverall", "AwayTeamAvgGoalsConcededOverall", "HomeTeamAvgGoalsScoredHome", "HomeTeamAvgGoalsConcededHome", "AwayTeamAvgGoalsScoredAway", "AwayTeamAvgGoalsConcededAway",
-            "HomeTeamAvgGoalsScoredOverallForm", "HomeTeamAvgGoalsConcededOverallForm", "AwayTeamAvgGoalsScoredOverallForm", "AwayTeamAvgGoalsConcededOverallForm", "HomeTeamAvgGoalsScoredHomeForm", "HomeTeamAvgGoalsConcededHomeForm", "AwayTeamAvgGoalsScoredAwayForm", "AwayTeamAvgGoalsConcededAwayForm"
+            "HomeTeamAvgGoalsScoredOverallL3", "HomeTeamAvgGoalsConcededOverallL3", "AwayTeamAvgGoalsScoredOverallL3", "AwayTeamAvgGoalsConcededOverallL3", "HomeTeamAvgGoalsScoredHomeL3", "HomeTeamAvgGoalsConcededHomeL3", "AwayTeamAvgGoalsScoredAwayL3", "AwayTeamAvgGoalsConcededAwayL3"
             )).setOutputCol("features")
         df = assembler.transform(divisionIndexed)
         val df1 = df.withColumn("FTHG", functions.lit(0.0))
@@ -58,15 +60,15 @@ object PredictionEngine {
         val homeGoal_predictions = homeModel.transform(df3_home)
         val awayGoal_predictions = awayModel.transform(df3_away)
 
-        homeGoal_predictions.show()
-        awayGoal_predictions.show()
+        homeGoal_predictions.show(false)
+        awayGoal_predictions.show(false)
 
         val homeFilteredPre = homeGoal_predictions.select("homeTeam", "awayTeam", "prediction")
         val homeFiltered = homeFilteredPre.withColumnRenamed("prediction", "homeTeamScore")
         val awayFilteredPre = awayGoal_predictions.select("homeTeam", "prediction")
         val awayFiltered = awayFilteredPre.withColumnRenamed("prediction", "awayTeamScore")
         df = homeFiltered.join(awayFiltered, Seq("homeTeam"), joinType="outer")
-        df.show()
+        df.show(false)
 
         import org.apache.spark.sql.functions.round
         val homeScoreRounded = df.withColumn("homeTeamScore", round($"homeTeamScore", 2))
