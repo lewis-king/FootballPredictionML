@@ -32,10 +32,10 @@ object ModelBuilder {
     // For implicit conversions like converting RDDs to DataFrames
     val files = Array[String](
       //English Leagues
-      //"resources/201920/E0.csv",
-      //"resources/201920/E1.csv",
-      //"resources/201920/E2.csv",
-      //"resources/201920/E3.csv",
+      "resources/201920/E0.csv",
+      "resources/201920/E1.csv",
+      "resources/201920/E2.csv",
+      "resources/201920/E3.csv",
 
       "resources/201819/E0.csv",
       "resources/201819/E1.csv",
@@ -54,42 +54,42 @@ object ModelBuilder {
       "resources/201516/E3.csv",
 
       //Spanish Leagues
-      //"resources/201920/SP1.csv",
+      "resources/201920/SP1.csv",
       "resources/201819/SP1.csv",
     "resources/201718/SP1.csv",
     "resources/201617/SP1.csv",
       "resources/201516/SP1.csv",
 
     //Italian Leagues
-      //"resources/201920/I1.csv",
+      "resources/201920/I1.csv",
       "resources/201819/I1.csv",
     "resources/201718/I1.csv",
     "resources/201617/I1.csv",
       "resources/201516/I1.csv",
 
     //German Leagues
-      //"resources/201920/D1.csv",
+      "resources/201920/D1.csv",
     "resources/201819/D1.csv",
     "resources/201718/D1.csv",
     "resources/201617/D1.csv",
       "resources/201516/D1.csv",
 
     //French Leagues
-      //"resources/201920/F1.csv",
+      "resources/201920/F1.csv",
     "resources/201819/F1.csv",
     "resources/201718/F1.csv",
     "resources/201617/F1.csv",
       "resources/201516/F1.csv",
 
     //Scottish Leagues
-      //"resources/201920/SC0.csv",
+      "resources/201920/SC0.csv",
       "resources/201819/SC0.csv",
       "resources/201718/SC0.csv",
       "resources/201617/SC0.csv",
       "resources/201516/SC0.csv",
 
     //Dutch Leagues
-      //"resources/201920/N1.csv",
+      "resources/201920/N1.csv",
       "resources/201819/N1.csv",
       "resources/201718/N1.csv",
       "resources/201617/N1.csv",
@@ -148,7 +148,7 @@ object ModelBuilder {
     val indexed = indexedModel.transform(awayTeamIndexed);
     val divisionIndexer = new StringIndexer().setInputCol("Div").setOutputCol("DivIndex")
     val divisionIndexerModel = divisionIndexer.fit(indexed);
-    divisionIndexerModel.write.overwrite().save("target/model/divisionIndexegitr")
+    divisionIndexerModel.write.overwrite().save("target/model/divisionIndexer")
     val indexed2 = divisionIndexerModel.transform(indexed);
 
     val assembler = new VectorAssembler().setInputCols(Array("DivIndex",
